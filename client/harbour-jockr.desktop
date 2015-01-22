@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Name=jockr
+Icon=harbour-jockr
+Exec=harbour-jockr
+

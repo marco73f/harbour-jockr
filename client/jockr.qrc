@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/pages/images/loading-1.png</file>
+        <file>qml/pages/images/loading-2.png</file>
+        <file>qml/pages/images/loading-3.png</file>
+        <file>qml/pages/images/loading-4.png</file>
+        <file>qml/pages/images/notification.png</file>
+        <file>qml/pages/images/btn_donate_SM.gif</file>
+    </qresource>
+</RCC>

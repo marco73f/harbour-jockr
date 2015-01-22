@@ -1,0 +1,1 @@
+lupdate-qt4 ./ -ts translations/harbour-jockr-it.ts translations/harbour-jockr-fr.ts translations/harbour-jockr-de.ts translations/harbour-jockr-sp.ts translations/harbour-jockr-fi.ts translations/harbour-jockr-ru.ts
