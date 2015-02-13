@@ -35,7 +35,7 @@ Page {
                 }
 
                 Label {
-                    text: "Jockr - 0.1.1-1"
+                    text: "Jockr - 0.0.1-1"
                     color: Theme.highlightColor
                     font.pixelSize: Theme.fontSizeMedium/usr/share/harbour-jockr/usr/share/harbour-jockr
                     width: parent.width
@@ -95,7 +95,7 @@ Page {
                 }
 
                 Label {
-                    text: qsTr("Author") + ": Marco Forte"
+                    text: qsTr("Author: %1").arg("Marco Forte")
                     color: Theme.highlightColor
                     font.pixelSize: Theme.fontSizeMedium
                     width: parent.width

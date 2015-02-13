@@ -7,7 +7,6 @@ import Jockr 1.0
 
 Page {
     id: page
-    anchors.fill: parent
 
     property string photoId
     property string photoSecret
@@ -28,56 +27,56 @@ Page {
         onStatusChanged: {
             if (status === XmlListModel.Ready) {
                 strStatus = count + " Items loaded"
-                dateuploadedPhoto.text += getDateFromEpoc(get(0).dateuploaded)
-                isfavoritePhoto.text += get(0).isfavorite === 0 ? "No" : "Yes"
-                licensePhoto.text += get(0).license
+                dateuploadedPhoto.value = getDateFromEpoc(get(0).dateuploaded)
+                isfavoritePhoto.value = get(0).isfavorite === 0 ? "No" : "Yes"
+                licensePhoto.value = get(0).license
                 switch (get(0).safety_level) {
-                case 0: safety_levelPhoto.text += "safe"
+                case 0: safety_levelPhoto.value = "safe"
                     break;
-                case 1: safety_levelPhoto.text += "moderate"
+                case 1: safety_levelPhoto.value = "moderate"
                     break;
-                case 2: safety_levelPhoto.text += "limited"
+                case 2: safety_levelPhoto.value = "limited"
                     break;
                 }
-                rotationPhoto.text += get(0).rotation
-                originalformatPhoto.text += get(0).originalformat
-                viewsPhoto.text += get(0).views
-                mediaPhoto.text += get(0).media
+                rotationPhoto.value = get(0).rotation
+                originalformatPhoto.value = get(0).originalformat
+                viewsPhoto.value = get(0).views
+                mediaPhoto.value = get(0).media
 
-                ownerUsernamePhoto.text += get(0).ownerUsername
-                ownerRealnamePhoto.text += get(0).ownerRealname
-                ownerLocationPhoto.text += get(0).ownerLocation
+                ownerUsernamePhoto.value = get(0).ownerUsername
+                ownerRealnamePhoto.value = get(0).ownerRealname
+                ownerLocationPhoto.value = get(0).ownerLocation
 
-                titlePhoto.text = get(0).title
-                descriptionPhoto.text = get(0).description
+                titlePhoto.value = get(0).title
+                descriptionPhoto.value = get(0).description
 
                 if (get(0).ispublic === 0) {
-                    ispublicPhoto.text += "No"
-                    isfriendPhoto.text += get(0).isfriend === 0 ? "No" : "Yes"
-                    isfamilyPhoto.text += get(0).isfamily === 0 ? "No" : "Yes"
+                    ispublicPhoto.value = "No"
+                    isfriendPhoto.value = get(0).isfriend === 0 ? "No" : "Yes"
+                    isfamilyPhoto.value = get(0).isfamily === 0 ? "No" : "Yes"
                 } else {
-                    ispublicPhoto.text += "Yes"
-                    isfriendPhoto.text += "Yes"
-                    isfamilyPhoto.text += "Yes"
+                    ispublicPhoto.value = "Yes"
+                    isfriendPhoto.value = "Yes"
+                    isfamilyPhoto.value = "Yes"
                 }
 
-                datePostedPhoto.text += getDateFromEpoc(get(0).datePosted)
-                dateTakenPhoto.text += getDateFromEpoc(get(0).dateTaken)
-                lastupdatePhoto.text += getDateFromEpoc(get(0).lastupdate)
+                datePostedPhoto.value = getDateFromEpoc(get(0).datePosted)
+                dateTakenPhoto.value = getDateFromEpoc(get(0).dateTaken)
+                lastupdatePhoto.value = getDateFromEpoc(get(0).lastupdate)
 
-                permcommentPhoto.text += get(0).permcomment
-                permaddmetaPhoto.text += get(0).permaddmeta
-                cancommentPhoto.text += get(0).cancomment
-                canaddmetaPhoto.text += get(0).canaddmeta
-                publicCancommentPhoto.text += get(0).publicCancomment
-                publicCanaddmetaPhoto.text += get(0).publicCanaddmeta
-                candownloadPhoto.text += get(0).candownload
-                canblogPhoto.text += get(0).canblog
-                cansharePhoto.text += get(0).canshare
+                permcommentPhoto.value = get(0).permcomment
+                permaddmetaPhoto.value = get(0).permaddmeta
+                cancommentPhoto.value = get(0).cancomment
+                canaddmetaPhoto.value += get(0).canaddmeta
+                publicCancommentPhoto.value = get(0).publicCancomment
+                publicCanaddmetaPhoto.value = get(0).publicCanaddmeta
+                candownloadPhoto.value = get(0).candownload
+                canblogPhoto.value = get(0).canblog
+                cansharePhoto.value = get(0).canshare
 
-                commentsPhoto.text += get(0).comments
-                notesPhoto.text += get(0).notes
-                haspeoplePhoto.text += get(0).haspeople
+                commentsPhoto.value = get(0).comments
+                notesPhoto.value = get(0).notes
+                haspeoplePhoto.value = get(0).haspeople
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
             if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
@@ -103,6 +102,7 @@ Page {
 
         Column {
             id: column
+            property int widthLabel: width - Theme.paddingLarge
             width: parent.width
             height: children.height
             spacing: 20
@@ -111,7 +111,7 @@ Page {
             /* Photo id
             Label {
                 id: idPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -120,7 +120,7 @@ Page {
             }
             Label {
                 id: secretPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -129,7 +129,7 @@ Page {
             }
             Label {
                 id: serverPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -138,7 +138,7 @@ Page {
             }
             Label {
                 id: farmPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -148,52 +148,37 @@ Page {
             */
 
             /* info */
-            Label {
-                id: titlePhotoLabel
-                width: parent.width
-                anchors {
-                    left: parent.left
-                    leftMargin: Theme.paddingLarge
-                }
-                text: qsTr("title:")
-            }
-            Label {
+            DetailItem {
                 id: titlePhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
+                label: qsTr("title")
             }
-            Label {
-                id: descriptionPhotoLabel
-                width: parent.width
-                anchors {
-                    left: parent.left
-                    leftMargin: Theme.paddingLarge
-                }
-                text: qsTr("description:")
-            }
-            TextArea {
+            DetailItem {
                 id: descriptionPhoto
-                width: parent.width
-                height: Theme.itemSizeLarge * 2
-                focus: false
-                readOnly: true
-            }
-            Label {
-                id: mediaPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("media: ")
+                label: qsTr("description")
+            }
+            DetailItem {
+                id: mediaPhoto
+                width: column.widthLabel
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.paddingLarge
+                }
+                label: qsTr("media")
             }
 
             /* Privacys */
             Label {
-                width: parent.width
+                width: column.widthLabel
                 color: Theme.highlightColor
                 anchors {
                     left: parent.left
@@ -202,43 +187,41 @@ Page {
                 text: qsTr("Privacy")
             }
             Separator {
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
             }
-            Label {
+            DetailItem {
                 id: ispublicPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("public: ")
+                label: qsTr("public")
             }
-            Label {
+            DetailItem {
                 id: isfriendPhoto
-                width: parent.width
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("visible by friend: ")
+                label: qsTr("visible by friend")
             }
-            Label {
+            DetailItem {
                 id: isfamilyPhoto
-                width: parent.width
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("visible by family: ")
+                label: qsTr("visible by family")
             }
 
             /* owner */
             Label {
-                width: parent.width
+                width: column.widthLabel
                 color: Theme.highlightColor
                 anchors {
                     left: parent.left
@@ -247,7 +230,7 @@ Page {
                 text: qsTr("Owener Info")
             }
             Separator {
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -256,7 +239,7 @@ Page {
             /*
             Label {
                 id: ownerNsidPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -264,37 +247,37 @@ Page {
                 text: "ownerNsid: "
             }
             */
-            Label {
+            DetailItem {
                 id: ownerUsernamePhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("ownerUsername: ")
+                label: qsTr("ownerUsername")
             }
-            Label {
+            DetailItem {
                 id: ownerRealnamePhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("ownerRealname: ")
+                label: qsTr("ownerRealname")
             }
-            Label {
+            DetailItem {
                 id: ownerLocationPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("ownerLocation: ")
+                label: qsTr("ownerLocation")
             }
             /*
             Label {
                 id: ownerIconserverPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -303,7 +286,7 @@ Page {
             }
             Label {
                 id: ownerIconfarmPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -312,7 +295,7 @@ Page {
             }
             Label {
                 id: ownerPath_aliasPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -321,46 +304,46 @@ Page {
             }
             */
 
-            Label {
+            DetailItem {
                 id: isfavoritePhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("favorite: ")
+                label: qsTr("favorite")
             }
-            Label {
+            DetailItem {
                 id: licensePhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("license: ")
+                label: qsTr("license")
             }
-            Label {
+            DetailItem {
                 id: safety_levelPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("safety level: ")
+                label: qsTr("safety level")
             }
-            Label {
+            DetailItem {
                 id: rotationPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("rotation: ")
+                label: qsTr("rotation")
             }
             /*
             Label {
                 id: originalsecretPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -368,28 +351,28 @@ Page {
                 text: "originalsecret: "
             }
             */
-            Label {
+            DetailItem {
                 id: originalformatPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("originalformat: ")
+                label: qsTr("originalformat")
             }
-            Label {
+            DetailItem {
                 id: viewsPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("views: ")
+                label: qsTr("views")
             }
 
             /* Date */
             Label {
-                width: parent.width
+                width: column.widthLabel
                 color: Theme.highlightColor
                 anchors {
                     left: parent.left
@@ -398,43 +381,43 @@ Page {
                 text: qsTr("Date Info")
             }
             Separator {
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
             }
-            Label {
+            DetailItem {
                 id: dateuploadedPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("Upload: ")
+                label: qsTr("Upload")
             }
-            Label {
+            DetailItem {
                 id: datePostedPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("Posted: ")
+                label: qsTr("Posted")
             }
-            Label {
+            DetailItem {
                 id: dateTakenPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("Taken: ")
+                label: qsTr("Taken")
             }
             /*
             Label {
                 id: dateTakengranularityPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
@@ -442,19 +425,19 @@ Page {
                 text: "dateTakengranularity: "
             }
             */
-            Label {
+            DetailItem {
                 id: lastupdatePhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("Update: ")
+                label: qsTr("Update")
             }
 
             /* comments and notes */
             Label {
-                width: parent.width
+                width: column.widthLabel
                 color: Theme.highlightColor
                 anchors {
                     left: parent.left
@@ -463,43 +446,43 @@ Page {
                 text: qsTr("Comments and notes")
             }
             Separator {
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
             }
-            Label {
+            DetailItem {
                 id: commentsPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: "comments: "
+                label: qsTr("Comments")
             }
-            Label {
+            DetailItem {
                 id: notesPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("notes: ")
+                label: qsTr("notes")
             }
-            Label {
+            DetailItem {
                 id: haspeoplePhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("haspeople: ")
+                label: qsTr("haspeople")
             }
 
             /* permition */
             Label {
-                width: parent.width
+                width: column.widthLabel
                 color: Theme.highlightColor
                 anchors {
                     left: parent.left
@@ -508,92 +491,92 @@ Page {
                 text: qsTr("Permition")
             }
             Separator {
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
             }
-            Label {
+            DetailItem {
                 id: permcommentPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("permcomment: ")
+                label: qsTr("permcomment")
             }
-            Label {
+            DetailItem {
                 id: permaddmetaPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("permaddmeta: ")
+                label: qsTr("permaddmeta")
             }
-            Label {
+            DetailItem {
                 id: cancommentPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("cancomment: ")
+                label: qsTr("cancomment")
             }
-            Label {
+            DetailItem {
                 id: canaddmetaPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("canaddmeta: ")
+                label: qsTr("canaddmeta")
             }
-            Label {
+            DetailItem {
                 id: publicCancommentPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("publicCancomment: ")
+                label: qsTr("publicCancomment")
             }
-            Label {
+            DetailItem {
                 id: publicCanaddmetaPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("publicCanaddmeta: ")
+                label: qsTr("publicCanaddmeta")
             }
-            Label {
+            DetailItem {
                 id: candownloadPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("candownload: ")
+                label: qsTr("candownload")
             }
-            Label {
+            DetailItem {
                 id: canblogPhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("canblog: ")
+                label: qsTr("canblog")
             }
-            Label {
+            DetailItem {
                 id: cansharePhoto
-                width: parent.width
+                width: column.widthLabel
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("canshare: ")
+                label: qsTr("canshare")
             }
 
         }

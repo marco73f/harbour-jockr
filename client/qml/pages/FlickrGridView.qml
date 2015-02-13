@@ -65,6 +65,7 @@ Page {
         cacheBuffer: grid.height
         anchors.fill: parent
         model: photosGetContactsPhotosModel
+        cache: height * 4
 
         delegate: JockrImage {
             width: grid.cellWidth

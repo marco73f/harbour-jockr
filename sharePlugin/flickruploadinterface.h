@@ -4,8 +4,6 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QHttpMultiPart>
-#include <QHttpPart>
 
 #include "networkconnection.h"
 #include "o1flickr.h"
@@ -47,9 +45,6 @@ private slots:
     void changeStatus();
 
 private:
-    QByteArray generateBoundary();
-    QHttpPart constructField(const QString name, const QByteArray content);
-
     QNetworkReply *reply_;
     O1Requestor *requestor_;
     O1Flickr *o1Flickr;

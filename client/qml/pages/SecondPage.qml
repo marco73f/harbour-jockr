@@ -46,7 +46,7 @@ Page {
 
             Label {
                 x: Theme.paddingLarge
-                text: "Item " + index
+                text: qsTr("Item %1").arg(index)
                 anchors.verticalCenter: parent.verticalCenter
                 color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             }

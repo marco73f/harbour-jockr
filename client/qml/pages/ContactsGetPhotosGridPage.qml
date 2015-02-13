@@ -64,10 +64,10 @@ Page {
         }
 
         onStatusChanged: {
-            if (status === XmlListModel.Ready) { strStatus = count + " Items loaded" }
-            if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
-            if (status === XmlListModel.Null) { strStatus = "Loading" }
+            if (status === XmlListModel.Ready) { strStatus = count + qsTr(" Items loaded") }
+            if (status === XmlListModel.Loading) { strStatus = qsTr("Loading") }
+            if (status === XmlListModel.Error) { strStatus = qsTr("Error:") + "\n" + errorString }
+            if (status === XmlListModel.Null) { strStatus = qsTr("Loading") }
         }
     }
 

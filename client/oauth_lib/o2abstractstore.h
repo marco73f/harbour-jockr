@@ -19,6 +19,10 @@ public:
     virtual QString value(const QString &key, const QString &defaultValue = QString()) = 0;
 
     virtual void setValue(const QString &key, const QString &value) = 0;
+
+    virtual void remove(const QString &key) = 0;
+
+    virtual void clearStore() = 0;
 };
 
 #endif // O2ABSTRACTSTORE_H

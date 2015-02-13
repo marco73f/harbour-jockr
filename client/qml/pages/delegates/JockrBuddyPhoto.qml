@@ -7,7 +7,7 @@ BackgroundItem {
     id: rowItem
     property alias placeHolderIcon: placeHolder.source
     property alias sourceIcon: buddyIcon.source
-    property alias stateIcon: buddyItem.state
+//    property alias stateIcon: buddyItem.state
     property alias tabLabel: tabLabel.text
     property alias numberItem: numberLabel.text
 

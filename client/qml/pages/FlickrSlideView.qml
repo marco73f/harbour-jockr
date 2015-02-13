@@ -45,7 +45,7 @@ Page {
         snapMode: ListView.SnapOneItem
         orientation: ListView.VerticalFlick
         highlightRangeMode: ListView.StrictlyEnforceRange
-        cacheBuffer: width
+        cacheBuffer: height * 4
 
         anchors.fill: parent
 

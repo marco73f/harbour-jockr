@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1">
 <context>
     <name></name>
     <message id="Jockr Share">
@@ -12,6 +12,18 @@
     <name>About</name>
     <message>
         <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Donations are welcome</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are welcome to contribute to translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Author: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -35,6 +47,18 @@
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source> Items loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ErrorPage</name>
@@ -43,15 +67,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Network: &lt;b&gt;connected&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Network: &lt;b&gt;not connected&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not connected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -109,7 +129,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>update view</source>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update view</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>JockrSlideView</name>
+    <message>
+        <source>Network: &lt;b&gt;connected&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: &lt;b&gt;not connected&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error Page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -117,6 +160,13 @@
     <name>PeopleGetPhotosGridPage</name>
     <message>
         <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PeopleGetPhotosPage</name>
+    <message>
+        <source>Images</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -139,6 +189,14 @@
     </message>
     <message>
         <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -170,31 +228,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>description:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>media: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>public: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>visible by friend: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>visible by family: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -202,59 +236,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>ownerUsername: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ownerRealname: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ownerLocation: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>favorite: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>license: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>safety level: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>rotation: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>originalformat: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>views: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Date Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Upload: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Posted: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Taken: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -262,51 +244,138 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>notes: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>haspeople: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Permition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>permcomment: </source>
+        <source>title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>permaddmeta: </source>
+        <source>description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>cancomment: </source>
+        <source>media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>canaddmeta: </source>
+        <source>public</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>publicCancomment: </source>
+        <source>visible by friend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>publicCanaddmeta: </source>
+        <source>visible by family</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>candownload: </source>
+        <source>ownerUsername</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>canblog: </source>
+        <source>ownerRealname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>canshare: </source>
+        <source>ownerLocation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>license</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>safety level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>rotation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>originalformat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>views</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Posted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Taken</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>haspeople</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>permcomment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>permaddmeta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cancomment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>canaddmeta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>publicCancomment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>publicCanaddmeta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>candownload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>canblog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>canshare</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PhotosGetInfoDelegate</name>
+    <message>
+        <source>No Description</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -330,6 +399,10 @@
         <source>Nested Page</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Item %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Settings</name>
@@ -339,6 +412,51 @@
     </message>
     <message>
         <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TimelineDelegate</name>
+    <message>
+        <source>by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UserInfoDelegate</name>
+    <message>
+        <source>yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>First upload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UserPage</name>
+    <message>
+        <source>Search friends</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change photoes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change Avatar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -382,6 +500,37 @@
     </message>
     <message>
         <source>Loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>sharePluginUI</name>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ontent Type: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Privacy: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>will be visible in public research</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -20,11 +20,11 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
             }
             MenuItem {
-                text: "Settings"
+                text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
             }
             MenuItem {
-                text: qsTr("update view")
+                text: qsTr("Update view")
                 onClicked: updateAllModel()
             }
         }
@@ -41,7 +41,7 @@ Page {
             numberItem: num
             placeHolderIcon: sourcePlasceHolderIcon
             sourceIcon: sourceBuddyIcon
-            stateIcon: stateBuddyIcon
+//            stateIcon: stateBuddyIcon
         }
 
         model: mainMenuModel

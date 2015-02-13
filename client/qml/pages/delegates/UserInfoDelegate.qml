@@ -43,7 +43,7 @@ Rectangle{
     FlickrText{
         id: pro
         header: "Pro"
-        text: (ispro != 0?"yes":"no")
+        text: ispro != 0 ? qsTr("yes") : qsTr("no")
         anchors.top: photos.bottom
         anchors.topMargin: Theme.paddingMedium
         anchors.left: photos.left
@@ -51,7 +51,7 @@ Rectangle{
 
     FlickrText{
         id: dateTaken
-        header: "First upload"
+        header: qsTr("First upload")
         text: firstdatetaken // TODO: format this to shorter
         anchors.top:  pro.bottom
         anchors.topMargin: Theme.paddingMedium
@@ -59,7 +59,7 @@ Rectangle{
     }
     FlickrText{
         id: location
-        header:  "Location"
+        header:  qsTr("Location")
         text: (geolocation != ""? geolocation:"unknown")
         anchors.top:  dateTaken.bottom
         anchors.topMargin: Theme.paddingMedium

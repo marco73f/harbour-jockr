@@ -196,7 +196,7 @@ Item{
             Text{
                 id: descriptionText
                 y: Theme.paddingMedium
-                text: {if (description != "" )return description; else return "No Description"; }
+                text: description != "" ? description : qsTr("No Description")
                 width: parent.width
                 wrapMode: Text.Wrap
                 smooth:  true

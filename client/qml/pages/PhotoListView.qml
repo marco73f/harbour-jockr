@@ -48,9 +48,11 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                enabled: false
                 text: qsTr("Near")
             }
             MenuItem {
+                enabled: false
                 text: qsTr("Search")
             }
             MenuItem {
@@ -75,7 +77,7 @@ Page {
 
         ViewPlaceholder {
             enabled: grid.count == 0
-            text: photoGetRecentModel.xml !== "" ? "No items" : "Loading"
+            text: photoGetRecentModel.xml !== "" ? qsTr("No items") : qsTr("Loading")
         }
     }
 }

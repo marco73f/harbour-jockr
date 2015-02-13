@@ -64,7 +64,7 @@ Rectangle{
         anchors.right: image.right
         anchors.bottom: polaroid.bottom
         color: "black"
-        text: "by " + username
+        text: qsTr("by %1").arg(username)
         elide: Text.ElideRight
     }
 }

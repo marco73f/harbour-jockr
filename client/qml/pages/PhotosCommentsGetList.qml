@@ -6,7 +6,6 @@ import "delegates"
 
 Page {
     id: page
-    anchors.fill: parent
 
     property string photoId
 

@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QNetworkRequest>
 #include <QByteArray>
+#include <QCryptographicHash>
 
 #include "o1.h"
 
@@ -35,9 +36,9 @@ public slots:
     /// Make a POST request.
     /// @param  req                 Network request.
     /// @param  signingParameters   Extra (non-OAuth) parameters participating in signing.
-    /// @param  multiPart           HTTPMultiPart.
+    /// @param  data                Request payload.
     /// @return Reply.
-    QNetworkReply *post(const QNetworkRequest &req, const QList<O1RequestParameter> &signingParameters, QHttpMultiPart *multiPart);
+    QNetworkReply *upload(const QUrl &url, const QStringList &params, const QString &mediaUrl);
 
     /// Make a PUT request.
     /// @param  req                 Network request.
@@ -55,6 +56,12 @@ protected:
 
     QNetworkAccessManager *manager_;
     O1 *authenticator_;
+
+private:
+    QByteArray constructField(const QString name, const QString content, const QByteArray boundary, QString filename);
+    QString md5(const QString &data);
+    QString hmacSha1(const QString &data);
+    QByteArray generateBoundary();
 };
 
 

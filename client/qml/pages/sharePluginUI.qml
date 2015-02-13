@@ -127,9 +127,9 @@ ShareDialog {
             TextSwitch {
                 id: mediaPublicReserch
                 text: "no"
-                description: "will be visible in public research"
+                description: qsTr("will be visible in public research")
                 onCheckedChanged: {
-                    text = checked ? "yes" : "no"
+                    text = checked ? qsTr("yes") : qsTr("no")
                 }
             }
 

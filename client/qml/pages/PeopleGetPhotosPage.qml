@@ -61,7 +61,7 @@ Page {
 
     SilicaGridView {
         id: grid
-        header: PageHeader { title: "Images" }
+        header: PageHeader { title: qsTr("Images") }
         cellWidth: width / 3
         cellHeight: cellWidth
         cacheBuffer: grid.height

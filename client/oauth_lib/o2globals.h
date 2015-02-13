@@ -12,6 +12,7 @@ const char O2_KEY_TOKEN_SECRET[] = "tokensecret.%1";
 const char O2_KEY_CODE[] = "code.%1";
 const char O2_KEY_EXPIRES[] = "expires.%1";
 const char O2_KEY_REFRESH_TOKEN[] = "refreshtoken.%1";
+const char O2_KEY_NSID[] = "nsid.%1";
 
 // OAuth 1/1.1 Request Parameters
 const char O2_OAUTH_CALLBACK[] = "oauth_callback";
@@ -41,7 +42,7 @@ const char O2_OAUTH2_ACCESS_TOKEN[] = "access_token";
 const char O2_OAUTH2_REFRESH_TOKEN[] = "refresh_token";
 const char O2_OAUTH2_EXPIRES_IN[] = "expires_in";
 
-// OAuth signature types
+// Parameter values
 const char O2_SIGNATURE_TYPE_HMAC_SHA1[] = "HMAC-SHA1";
 const char O2_SIGNATURE_TYPE_PLAINTEXT[] = "PLAINTEXT";
 

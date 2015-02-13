@@ -126,18 +126,18 @@ Page {
 
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: "Error Page"
+                text: qsTr("Error Page")
                 font.bold: true
             }
 
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: ConnMan.netConnected ? "Network: <b>connected</b>" : "Network: <b>not connected</b>"
+                text: ConnMan.netConnected ? qsTr("Network: <b>connected</b>") : qsTr("Network: <b>not connected</b>")
             }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: "Reload"
+                text: qsTr("Reload")
             }
         }
     }

@@ -45,3 +45,11 @@ void O2SettingsStore::setValue(const QString &key, const QString &value) {
     QString fullKey = groupKey_.isEmpty() ? key : (groupKey_ + '/' + key);
     settings_->setValue(fullKey, crypt_.encryptToString(value));
 }
+
+void O2SettingsStore::remove(const QString &key) {
+    settings_->remove(key);
+}
+
+void O2SettingsStore::clearStore() {
+    settings_->clear();
+}
