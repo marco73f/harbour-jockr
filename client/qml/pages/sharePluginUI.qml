@@ -27,9 +27,9 @@ ShareDialog {
             "description": mediaDesc.text + "," + //"description"
             mediaTags.text + "," + //"tags"
             (mediaType.currentIndex + 1) + "," + //"mediaType"
-            (mediaPrivacy.currentIndex == 1 ? 1 : 0) + "," + //"is_friend"
-            (mediaPrivacy.currentIndex == 2 ? 1 : 0) + "," + //"is_family"
-            (mediaPrivacy.currentIndex == 3 ? 1 : 0) + "," + //"is_public"
+            (mediaPrivacy.currentIndex == 1 || mediaPrivacy.currentIndex == 3 ? 1 : 0) + "," + //"is_friend"
+            (mediaPrivacy.currentIndex == 2 || mediaPrivacy.currentIndex == 3 ? 1 : 0) + "," + //"is_family"
+            (mediaPrivacy.currentIndex == 4 ? 1 : 0) + "," + //"is_public"
             (mediaSafety.currentIndex + 1) + "," + //"safety_level"
             (mediaPublicReserch.text == "yes" ?  1 : 2)} //"hidden"
         console.debug("shareItem.userData = " + shareItem.userData);
@@ -120,6 +120,7 @@ ShareDialog {
                     MenuItem { text: "private - only visible to me" }
                     MenuItem { text: "private - visible by friends" }
                     MenuItem { text: "private - visible by family" }
+                    MenuItem { text: "private - visible by friends and family" }
                     MenuItem { text: "public  - visible from all" }
                 }
             }
