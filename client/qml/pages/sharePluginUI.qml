@@ -102,7 +102,7 @@ ShareDialog {
             ComboBox {
                 id: mediaType
                 width: parent.width
-                label: qsTr("ontent Type: ")
+                label: qsTr("Content Type: ")
 
                 menu: ContextMenu {
                     MenuItem { text: "photo" }
