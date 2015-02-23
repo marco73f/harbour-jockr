@@ -90,7 +90,8 @@ OTHER_FILES += qml/harbour-jockr.qml \
     qml/pages/models/FavoritesRemoveModel.qml \
     qml/pages/sharePluginUI.qml \
     qml/functions.js \
-    qml/pages/SignOutPage.qml
+    qml/pages/SignOutPage.qml \
+    qml/pages/PhotoViewer.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

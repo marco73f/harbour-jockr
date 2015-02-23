@@ -25,7 +25,18 @@ Item {
         fillMode: Image.PreserveAspectFit
         //sourceSize.height: window.height * 2
         asynchronous: true
-        anchors.fill: parent
+        anchors {
+            top: pageHeader.bottom
+            bottom: rowButtons.top
+            left: parent.left
+            right: parent.right
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: pageStack.push(Qt.resolvedUrl("../PhotoViewer.qml"), {sourceImage: photo.source})
+        }
+
 /*
         MouseArea {
             id: jockrMouseArea

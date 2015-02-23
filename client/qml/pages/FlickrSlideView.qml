@@ -58,6 +58,7 @@ Page {
         }
 
         delegate: JockrPhoto {
+            id: jockrPhoto
             width: listView.width
             height: listView.height
             clip: true
