@@ -1,11 +1,13 @@
 import QtQuick 2.0
 import QtQuick.XmlListModel 2.0
-import Jockr 1.0
+import harbour.jockr 1.0
 
 XmlListModel {
     property string api: "flickr.favorites.getList"
-    property string params: "extras:url_s,owner_name:per_page:" + GValue.per_page + ":page:" + GValue.page
+    property string params: "extras:url_s,owner_name:per_page:" + GValue.per_page // + ":page:" + GValue.page
     property string strStatus
+    property int page: 1
+    property int pages: 10
 
     query: "/rsp/photos/photo"
 

@@ -1,11 +1,13 @@
 import QtQuick 2.0
 import QtQuick.XmlListModel 2.0
-import Jockr 1.0
+import harbour.jockr 1.0
 
 XmlListModel {
     property string api: "flickr.photosets.getList"
     property string params
     property string strStatus
+    property int page: 1
+    property int pages: 10
 
     query: "/rsp/photosets/photoset"
 

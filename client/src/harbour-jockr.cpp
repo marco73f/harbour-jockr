@@ -89,10 +89,17 @@ int main(int argc, char *argv[])
     flickrSignIn = new FlickrSignIn(o1Flickr);
     flickrFactoryInterface = new FlickrFactoryInterface(o1Flickr, networkConnection->getNetworkAccessManager());
 
-    qmlRegisterSingletonType("Jockr", 1, 0, "GValue", qjsvalue_globalvalue_provider);
-    qmlRegisterSingletonType<NetworkConnection>("Jockr", 1, 0, "ConnMan", qobject_networkConnection_provider);
-    qmlRegisterSingletonType<FlickrSignIn>("Jockr", 1, 0, "OAuth", qobject_flickrSignIn_provider);
-    qmlRegisterSingletonType<FlickrFactoryInterface>("Jockr", 1, 0, "FactoryModelInterface", qobject_flickrFactoryInterface_provider);
+    /*
+    qmlRegisterSingletonType("harbour.jockr.settings", 1, 0, "GValue", qjsvalue_globalvalue_provider);
+    qmlRegisterSingletonType<NetworkConnection>("harbour.jockr.network", 1, 0, "ConnMan", qobject_networkConnection_provider);
+    qmlRegisterSingletonType<FlickrSignIn>("harbour.jockr.signin", 1, 0, "OAuth", qobject_flickrSignIn_provider);
+    qmlRegisterSingletonType<FlickrFactoryInterface>("harbour.jockr.interface", 1, 0, "FactoryModelInterface", qobject_flickrFactoryInterface_provider);
+    */
+    qmlRegisterSingletonType("harbour.jockr", 1, 0, "GValue", qjsvalue_globalvalue_provider);
+    qmlRegisterSingletonType<NetworkConnection>("harbour.jockr", 1, 0, "ConnMan", qobject_networkConnection_provider);
+    qmlRegisterSingletonType<FlickrSignIn>("harbour.jockr", 1, 0, "OAuth", qobject_flickrSignIn_provider);
+    qmlRegisterSingletonType<FlickrFactoryInterface>("harbour.jockr", 1, 0, "FactoryModelInterface", qobject_flickrFactoryInterface_provider);
+
 
     QGuiApplication* app = SailfishApp::application(argc, argv);
     QScopedPointer<QQuickView> view(SailfishApp::createView());

@@ -1,6 +1,9 @@
 Name:       harbour-jockr
 
 # >> macros
+# list here all the libraries your RPM installs
+# Disabled for publishing on harbour
+%define __requires_exclude ^libnemotransferengine.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -8,22 +11,20 @@ Name:       harbour-jockr
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    jockr
-Version:    0.0.1
+Version:    0.0.3
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+#URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
-Source100:  harbour-jockr.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
-Requires:   nemo-transferengine-qt5
+Requires: qt5-qtdeclarative-import-xmllistmodel
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
-BuildRequires:  pkgconfig(nemotransferengine-qt5)
-
+#BuildRequires:  pkgconfig(nemotransferengine-qt5)
 
 %description
 Jolla flickr client
@@ -65,6 +66,7 @@ desktop-file-install --delete-original       \
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/86x86/apps/%{name}.png
+# Disabled for publishing on harbour
 /usr/lib/nemo-transferengine/plugins/*.so
 # >> files
 # << files

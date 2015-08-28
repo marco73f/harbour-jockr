@@ -2,11 +2,10 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "models"
 import "delegates"
-import Jockr 1.0
+import harbour.jockr 1.0
 
 Page {
     id: page
-    anchors.fill: parent
     property string title
 
     SilicaGridView {
@@ -16,11 +15,24 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                //enabled: favoritesGetListModel.page > 1
+                visible: favoritesGetListModel.page > 1
+                text: qsTr("Previous page")
+                onClicked: { favoritesGetListModelChangePage(--favoritesGetListModel.page) }
+            }
+            MenuItem {
                 text: qsTr("Update")
                 onClicked: {
                     favoritesGetListModelUpdate()
-                    console.debug("Update clicked")
                 }
+            }
+        }
+
+        PushUpMenu {
+            MenuItem {
+                enabled: favoritesGetListModel.pages > favoritesGetListModel.page
+                text: qsTr("Next page")
+                onClicked: { favoritesGetListModelChangePage(++favoritesGetListModel.page) }
             }
         }
 

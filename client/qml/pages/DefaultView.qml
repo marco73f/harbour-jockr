@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 import QtQuick.XmlListModel 2.0
 import "delegates"
 import "models"
-import Jockr 1.0
+import harbour.jockr 1.0
 
 Page {
     id: page;

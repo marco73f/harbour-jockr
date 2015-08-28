@@ -29,14 +29,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Jockr 1.0
+import harbour.jockr 1.0
 import "models"
 import "delegates"
 
 
 Page {
     id: page
-    anchors.fill: parent
     property string title
     property string nsId
 
@@ -51,8 +50,22 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                //enabled: peopleGetPhotosModel.page > 1
+                visible: peopleGetPhotosModel.page > 1
+                text: qsTr("Previous page")
+                onClicked: { peopleGetPhotosModelChangePage(--peopleGetPhotosModel.page) }
+            }
+            MenuItem {
                 text: qsTr("Update")
                 onClicked: { peopleGetPhotosModelUpdate() }
+            }
+        }
+
+        PushUpMenu {
+            MenuItem {
+                enabled: peopleGetPhotosModel.pages > peopleGetPhotosModel.page
+                text: qsTr("Next page")
+                onClicked: { peopleGetPhotosModelChangePage(++peopleGetPhotosModel.page) }
             }
         }
 

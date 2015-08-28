@@ -1,0 +1,21 @@
+# Rename this file as harbour-jockr.changes to include changelog
+# entries in your RPM file.
+#
+# Add new changelog entries following the format below.
+# Add newest entries to the top of the list.
+# Separate entries from eachother with a blank line.
+
+# * date Author's Name <author's email> version-release
+# - Summary of changes
+
+* Mon Aug 28 13:03:35 CEST 2015 marco73f <marco73f@gmail.com> 0.0.3-1
+- added these features:
+added search of a newly updates
+removed incorrected dependencies for harbour
+applied required patches to publish the application on the official store
+added in the pulley menu of all sections the options: next page and previous page (Up to 10 pages can be visited)
+enabled the "favorite button" to add or delete images from favorites
+added button to zoom image
+added "search by position" option in the Explores flickr section
+updated translation
+

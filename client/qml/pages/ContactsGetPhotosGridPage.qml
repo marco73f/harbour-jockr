@@ -30,14 +30,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import QtQuick 2.0
 import QtQuick.XmlListModel 2.0
 import Sailfish.Silica 1.0
-import Jockr 1.0
+import harbour.jockr 1.0
 import "models"
 import "delegates"
 
 
 Page {
     id: page
-    anchors.fill: parent
     property string title
     property string nsId
     property alias model: grid.model
@@ -71,6 +70,10 @@ Page {
         }
     }
 
+    function contactsGetPhotosModelChangePage(pageNumber) {
+        modelInterface.queryApi("page:" + pageNumber + ":" + contactsGetPhotosModel.params)
+    }
+
     SilicaGridView {
         id: grid
         header: PageHeader { title: page.title }
@@ -82,10 +85,23 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                visible: contactsGetPhotosModel.page > 0
+                text: qsTr("Previous page")
+                onClicked: { contactsGetPhotosModelChangePage(--contactsGetPhotosModel.page) }
+            }
+            MenuItem {
                 text: qsTr("Update")
                 onClicked: {
                     modelInterface.queryApi(contactsGetPhotosModel.params)
                 }
+            }
+        }
+
+        PushUpMenu {
+            MenuItem {
+                enabled: contactsGetPhotosModel.pages > contactsGetPhotosModel.page
+                text: qsTr("Next page")
+                onClicked: { contactsGetPhotosModelChangePage(++contactsGetPhotosModel.page) }
             }
         }
 

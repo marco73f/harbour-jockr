@@ -25,6 +25,7 @@ Item {
         fillMode: Image.PreserveAspectFit
         //sourceSize.height: window.height * 2
         asynchronous: true
+        cache: true
         anchors {
             top: pageHeader.bottom
             bottom: rowButtons.top
@@ -32,12 +33,12 @@ Item {
             right: parent.right
         }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: pageStack.push(Qt.resolvedUrl("../PhotoViewer.qml"), {sourceImage: photo.source})
-        }
+        //        MouseArea {
+        //            anchors.fill: parent
+        //            onClicked: pageStack.push(Qt.resolvedUrl("../PhotoViewer.qml"), {sourceImage: photo.source})
+        //        }
 
-/*
+        /*
         MouseArea {
             id: jockrMouseArea
             anchors.fill: parent
@@ -76,7 +77,7 @@ Item {
                 }
             }
             */
-   /*
+        /*
             MouseArea {
                 id: dragArea
                 hoverEnabled: true
@@ -110,13 +111,17 @@ Item {
             id: favoritesIcon
             visible: !pinchPhoto
             icon.source: favoritePic ? "image://theme/icon-m-favorite-selected" : "image://theme/icon-m-favorite"
-//            onClicked: if (favoritePic) {
-//                           listView.removeToFavorite(pId)
-//                           favoritePic = false
-//                       } else {
-//                           listView.addToFavorite(pId)
-//                           favoritePic = true
-//                       }
+            onClicked: {
+                if (favoritePic) {
+                    console.log("remove favorite")
+                    favoritesRemoveModelPhoto(pId)
+                    favoritePic = false
+                } else {
+                    console.log("add favorite")
+                    favoritesAddModelPhoto(pId)
+                    favoritePic = true
+                }
+            }
         }
 
         IconButton {
@@ -126,17 +131,26 @@ Item {
             onClicked: listView.getComments(pId)
         }
 
-//        IconButton {
-//            id: shareIcon
-//            visible: !pinchPhoto
-//            icon.source: "image://theme/icon-m-share"
-//        }
+        //        IconButton {
+        //            id: shareIcon
+        //            visible: !pinchPhoto
+        //            icon.source: "image://theme/icon-m-share"
+        //        }
 
         IconButton {
             id: infoIcon
             visible: !pinchPhoto
-            icon.source: "image://theme/icon-m-about"
+            //icon.source: "image://theme/icon-m-about"
+            icon.source: "image://theme/icon-lock-information"
             onClicked: listView.getInfo(pId, pSecret)
+        }
+
+        IconButton {
+            id: zoomIcon
+            visible: !pinchPhoto
+            //icon.source: "image://theme/icon-camera-zoom-tele" icon-camera-zoom-in
+            icon.source: "image://theme/icon-camera-exposure-compensation"
+            onClicked: listView.zoomPage(photo.source)
         }
     }
 }

@@ -31,7 +31,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.XmlListModel 2.0
-import Jockr 1.0
+import harbour.jockr 1.0
 import "pages/models"
 import "functions.js" as Flib
 
@@ -111,16 +111,40 @@ ApplicationWindow
         peopleGetPhotosInterface.queryApi(peopleGetPhotosModel.params)
     }
 
+    function peopleGetPhotosModelChangePage(pageNumber) {
+        peopleGetPhotosInterface.queryApi("page:" + pageNumber + ":" + peopleGetPhotosModel.params)
+    }
+
     function peopleGetPublicPhotosModelUpdate() {
         peopleGetPublicPhotosInterface.queryApi("user_id:" + nsid  + ":" + peopleGetPublicPhotosModel.params)
+    }
+
+    function peopleGetPublicPhotosModelChangePage(pageNumber) {
+        peopleGetPublicPhotosInterface.queryApi("page:" + pageNumber + ":" + peopleGetPublicPhotosModel.params)
     }
 
     function photosetsGetListModelUpdate() {
         photosetsGetListInterface.queryApi(photosetsGetListModel.params)
     }
 
+    function photosetsGetListModelChangePage(pageNumber) {
+        photosetsGetListInterface.queryApi("page:" + pageNumber + ":" + photosetsGetListModel.params)
+    }
+
     function favoritesGetListModelUpdate() {
         favoritesGetListInterface.queryApi(favoritesGetListModel.params)
+    }
+
+    function favoritesGetListModelChangePage(pageNumber) {
+        favoritesGetListInterface.queryApi("page:" + pageNumber + ":" + favoritesGetListModel.params)
+    }
+
+    function favoritesAddModelPhoto(photoId) {
+        favoritesAddInterface.queryApi(favoritesAddModel.params + photoId)
+    }
+
+    function favoritesRemoveModelPhoto(photoId) {
+        favoritesRemoveInterface.queryApi(favoritesRemoveModel.params + photoId)
     }
 
     function groupsGetListModelUpdate() {
@@ -131,12 +155,25 @@ ApplicationWindow
         photosGetContactsPhotosInterface.queryApi(photosGetContactsPhotosModel.params)
     }
 
+    function photosGetContactsPhotosModelChangePage(pageNumber) {
+        photosGetContactsPhotosInterface.queryApi("page:" + pageNumber + ":" + photosGetContactsPhotosModel.params)
+    }
+
     function contactsGetListModelUpdate() {
         contactsGetListInterface.queryApi("")
     }
 
     function photoGetRecentModelUpdate() {
         photoGetRecentInterface.queryApi(photoGetRecentModel.params)
+    }
+
+    function photoGetRecentModelUpdatePosition(coordinates) {
+        photoGetRecentInterface.queryApi(coordinates + ":" + photoGetRecentModel.params)
+        console.debug("model updated")
+    }
+
+    function photoGetRecentModelChangePage(pageNumber) {
+        photoGetRecentInterface.queryApi("page:" + pageNumber + ":" + photoGetRecentModel.params)
     }
 
     function updateAllModel() {
@@ -159,6 +196,10 @@ ApplicationWindow
     property var photosetsListInterface: FactoryModelInterface.getModelInterface(photosetsGetPhotosModel.api)
 
     property var favoritesGetListInterface: FactoryModelInterface.getModelInterface(favoritesGetListModel.api)
+
+    property var favoritesAddInterface: FactoryModelInterface.getModelInterface(favoritesAddModel.api)
+
+    property var favoritesRemoveInterface: FactoryModelInterface.getModelInterface(favoritesRemoveModel.api)
 
     property var groupsGetListInterface: FactoryModelInterface.getModelInterface(groupsGetListModel.api)
 
@@ -215,6 +256,32 @@ ApplicationWindow
 
         onFailed: {
             favoritesGetListModel.xml = ""
+        }
+    }
+
+    Connections {
+        target: favoritesAddInterface
+
+        onXmlReady: {
+            favoritesAddModel.xml = xmlResponse
+            favoritesGetListModelUpdate()
+        }
+
+        onFailed: {
+            favoritesAddModel.xml = ""
+        }
+    }
+
+    Connections {
+        target: favoritesRemoveInterface
+
+        onXmlReady: {
+            favoritesRemoveModel.xml = xmlResponse
+            favoritesGetListModelUpdate()
+        }
+
+        onFailed: {
+            favoritesRemoveModel.xml = ""
         }
     }
 
@@ -342,9 +409,18 @@ ApplicationWindow
     ListModel {
         id: photosetsListModel
         property int iPhotosets: 0
+        property bool changePage: false
 
         function loadData(idx) {
+            iPhotosets = idx
+            console.log("photosetsListModel.loadData - photoset_id:" + photosetsGetListModel.get(idx).pId + " idx:" + idx)
             photosetsListInterface.queryApi("photoset_id:" + photosetsGetListModel.get(idx).pId)
+        }
+
+        function fChangePage(pId, pageNumber) {
+            console.log("photosetsListModel.loadData - photoset_id:" + pId)
+            changePage = true
+            photosetsListInterface.queryApi("photoset_id:" + pId + "page:" + pageNumber)
         }
     }
 
@@ -353,10 +429,14 @@ ApplicationWindow
 
         onXmlReady: {
             photosetsGetPhotosModel.xml = xmlResponse
+            photosetsListModel.changePage = false
+            //console.log("photosetsListInterface - photosetsListModel.iPhotosets:" + photosetsListModel.iPhotosets)
+            //photosetsListModel.set(photosetsListModel.iPhotosets, { "id": photosetsGetListModel.get(photosetsListModel.iPhotosets).pId, title: photosetsGetListModel.get(photosetsListModel.iPhotosets).title, "xml": photosetsGetPhotosModel.xml, "count": photosetsGetPhotosModel.count, "urlFirstPhoto": "https://farm" + photosetsGetPhotosModel.get(0).farm + ".staticflickr.com/" + photosetsGetPhotosModel.get(0).server + "/" + photosetsGetPhotosModel.get(0).id + "_" + photosetsGetPhotosModel.get(0).secret + "_m.jpg" })
         }
 
         onFailed: {
             photosetsGetPhotosModel.xml = ""
+            photosetsListModel.changePage = false
         }
     }
 
@@ -372,6 +452,48 @@ ApplicationWindow
                     mainMenuModel.setProperty(3, "stateBuddyIcon", loadedMessage)
                     Flib.loadFavoritesMap(favoritesGetListModel)
                 }
+            }
+            if (status === XmlListModel.Loading) { strStatus = "Loading" }
+            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Null) { strStatus = "Loading" }
+        }
+    }
+
+    FavoritesAddModel {
+        id: favoritesAddModel
+
+        onStatusChanged: {
+            if (status === XmlListModel.Ready) {
+                strStatus = count + " Items loaded"
+                /*
+                mainMenuModel.setProperty(3, "num", count)
+                if (count > 0) {
+                    mainMenuModel.setProperty(3, "sourceBuddyIcon", "https://farm" + get(0).farm + ".staticflickr.com/" + get(0).server + "/" + get(0).id + "_" + get(0).secret + "_t.jpg")
+                    mainMenuModel.setProperty(3, "stateBuddyIcon", loadedMessage)
+                    Flib.loadFavoritesMap(favoritesAddModel)
+                }
+                */
+            }
+            if (status === XmlListModel.Loading) { strStatus = "Loading" }
+            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Null) { strStatus = "Loading" }
+        }
+    }
+
+    FavoritesRemoveModel {
+        id: favoritesRemoveModel
+
+        onStatusChanged: {
+            if (status === XmlListModel.Ready) {
+                strStatus = count + " Items loaded"
+                /*
+                mainMenuModel.setProperty(3, "num", count)
+                if (count > 0) {
+                    mainMenuModel.setProperty(3, "sourceBuddyIcon", "https://farm" + get(0).farm + ".staticflickr.com/" + get(0).server + "/" + get(0).id + "_" + get(0).secret + "_t.jpg")
+                    mainMenuModel.setProperty(3, "stateBuddyIcon", loadedMessage)
+                    Flib.loadFavoritesMap(favoritesRemoveModel)
+                }
+                */
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
             if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
@@ -419,10 +541,27 @@ ApplicationWindow
     ListModel {
         id: groupsListModel
         property int iGroups: 0
+        property bool changePage: false
 
         function loadData(idx) {
+            iGroups = idx
+            console.log("groupsListModel.loadData - group_id:" + groupsGetListModel.get(idx).nsid + " idx:" + idx)
             groupsListInterface.queryApi("group_id:" + groupsGetListModel.get(idx).nsid)
         }
+
+        function fChangePage(gnsid, pageNumber) {
+            console.log("groupsListModel.loadData - group_id:" + gnsid)
+            changePage = true
+            groupsListInterface.queryApi("group_id:" + gnsid + ":page:" + pageNumber)
+        }
+
+        /*
+        function changePage(idx, page) {
+            iGroups = idx
+            console.log("groupsListModel.loadData - group_id:" + groupsGetListModel.get(idx).nsid + " idx:" + idx)
+            groupsListInterface.queryApi("group_id:" + groupsGetListModel.get(idx).nsid)
+        }
+        */
     }
 
     Connections {
@@ -430,10 +569,14 @@ ApplicationWindow
 
         onXmlReady: {
             groupGetPhotosModel.xml = xmlResponse
+            groupsListModel.changePage = false
+            //console.log("groupsListInterface - groupsListModel.iGroups:" + groupsListModel.iGroups)
+            //groupsListModel.set(groupsListModel.iGroups, { "id": groupsGetListModel.get(groupsListModel.iGroups).nsid, name: groupsGetListModel.get(groupsListModel.iGroups).name, "xml": groupGetPhotosModel.xml, "count": groupGetPhotosModel.count, "urlFirstGroup": "https://farm" + groupGetPhotosModel.get(0).farm + ".staticflickr.com/" + groupGetPhotosModel.get(0).server + "/" + groupGetPhotosModel.get(0).id + "_" + groupGetPhotosModel.get(0).secret + "_m.jpg" })
         }
 
         onFailed: {
             groupGetPhotosModel.xml = ""
+            groupsListModel.changePage = false
         }
     }
 
@@ -452,6 +595,7 @@ ApplicationWindow
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
             if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
+            console.log(strStatus)
         }
     }
 

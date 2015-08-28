@@ -31,11 +31,10 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "models"
 import "delegates"
-import Jockr 1.0
+import harbour.jockr 1.0
 
 Page {
     id: page
-    anchors.fill: parent
     property string group_id
     property string group_Title
     property string group_xml
@@ -57,10 +56,25 @@ Page {
 
         PullDownMenu {
             MenuItem {
+//                visible: groupListModel.page > 0
+                enabled: false
+                text: qsTr("Previous page")
+//                onClicked: { groupsGetListModelChangePage(--groupListModel.page) }
+            }
+            MenuItem {
                 text: qsTr("Update")
                 onClicked: {
-                    groupsListModel.loadData(groupListModel)
+                    groupsListModel.fChangePage(group_id, groupListModel.page)
                 }
+            }
+        }
+
+        PushUpMenu {
+            MenuItem {
+                //enabled: groupListModel.pages > groupListModel.page
+                enabled: false
+                text: qsTr("Next page")
+                //onClicked: { contactsGetPhotosModelChangePage(++groupListModel.page) }
             }
         }
 

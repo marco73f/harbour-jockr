@@ -11,10 +11,6 @@
 <context>
     <name>About</name>
     <message>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Donations are welcome</source>
         <translation type="unfinished"></translation>
     </message>
@@ -24,6 +20,10 @@
     </message>
     <message>
         <source>Author: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -59,6 +59,14 @@
         <source>Error:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ErrorPage</name>
@@ -79,6 +87,14 @@
     <name>FavoritesGetList</name>
     <message>
         <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -119,6 +135,14 @@
     <name>GroupsGetPhotosGridPage</name>
     <message>
         <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -162,6 +186,14 @@
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeopleGetPhotosPage</name>
@@ -176,19 +208,19 @@
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PhotoListView</name>
     <message>
-        <source>Near</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -197,6 +229,22 @@
     </message>
     <message>
         <source>Loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search by position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Newly published</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -211,6 +259,14 @@
     <name>PhotosGetContactsPhotosPage</name>
     <message>
         <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -385,11 +441,27 @@
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PhotosetsGetPhotosGridPage</name>
     <message>
         <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -514,10 +586,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>ontent Type: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Privacy: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -531,6 +599,10 @@
     </message>
     <message>
         <source>no</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content Type: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

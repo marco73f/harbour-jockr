@@ -29,14 +29,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-//import QtPositioning 5.2
+import QtPositioning 5.2
+import harbour.jockr 1.0
 import "models"
 import "delegates"
-import Jockr 1.0
 
 Page {
     id: page
-    anchors.fill: parent
     property string title
 
     SilicaGridView {
@@ -46,18 +45,58 @@ Page {
 
         header: PageHeader { title: page.title }
 
+        function updateModelPosition() {
+            console.debug("onPositionChanged")
+            //positionSource.active && positionSource.stop()
+            console.debug("positionSource stopped, latitude:" + positionSource.position.coordinate.latitude + " longitude:" + positionSource.position.coordinate.longitude)
+            if (positionSource.position.coordinate.latitude && positionSource.position.coordinate.longitude) {
+                console.debug("try to update model with position")
+                photoGetRecentModelUpdatePosition("lat:" + positionSource.position.coordinate.latitude + ":lon:" + positionSource.position.coordinate.longitude)
+            }
+        }
+
+        PositionSource {
+            id: positionSource
+            active: true
+//            onPositionChanged: {
+//                if (setPosition) {
+//                    console.log("position is changed !!!")
+//                    updateModelPosition()
+//                    setPosition = false
+//                    console.log("position changed is completed")
+//                }
+//            }
+        }
+
         PullDownMenu {
             MenuItem {
-                enabled: false
-                text: qsTr("Near")
+                text: qsTr("Search by position")
+                onClicked: {
+                    console.log("update model by near")
+                    grid.updateModelPosition()
+                }
             }
             MenuItem {
                 enabled: false
                 text: qsTr("Search")
             }
             MenuItem {
-                text: qsTr("Update")
+                //enabled: photoGetRecentModel.page > 1
+                visible: photoGetRecentModel.page > 1
+                text: qsTr("Previous page")
+                onClicked: { photoGetRecentModelChangePage(--photoGetRecentModel.page) }
+            }
+            MenuItem {
+                text: qsTr("Newly published")
                 onClicked: { photoGetRecentModelUpdate() }
+            }
+        }
+
+        PushUpMenu {
+            MenuItem {
+                enabled: photoGetRecentModel.pages > photoGetRecentModel.page
+                text: qsTr("Next page")
+                onClicked: { photoGetRecentModelChangePage(++photoGetRecentModel.page) }
             }
         }
 

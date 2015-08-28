@@ -2,7 +2,7 @@ TEMPLATE = subdirs
 
 SUBDIRS = \
     client \
-    sharePlugin
+    sharePlugin #Disabled for publishing on harbour
 
 OTHER_FILES = \
     rpm/harbour-jockr.spec

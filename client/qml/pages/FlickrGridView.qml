@@ -31,11 +31,10 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "models"
 import "delegates"
-import Jockr 1.0
+import harbour.jockr 1.0
 
 Page {
     id: page
-    anchors.fill: parent
 
     property var modelInterface: FactoryModelInterface.getModelInterface(photosGetContactsPhotosModel.api)
 

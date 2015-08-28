@@ -35,9 +35,9 @@ Page {
                 }
 
                 Label {
-                    text: "Jockr - 0.0.1-1"
+                    text: "Jockr - 0.0.3-1"
                     color: Theme.highlightColor
-                    font.pixelSize: Theme.fontSizeMedium/usr/share/harbour-jockr/usr/share/harbour-jockr
+                    font.pixelSize: Theme.fontSizeMedium
                     width: parent.width
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.WordWrap

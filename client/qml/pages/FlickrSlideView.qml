@@ -57,6 +57,10 @@ Page {
             pageStack.push(Qt.resolvedUrl("PhotosGetInfo.qml"), {photoId: idPhoto, photoSecret: secretPhoto})
         }
 
+        function zoomPage(sourceImg) {
+            pageStack.push(Qt.resolvedUrl("PhotoViewer.qml"), {sourceImage: sourceImg})
+        }
+
         delegate: JockrPhoto {
             id: jockrPhoto
             width: listView.width

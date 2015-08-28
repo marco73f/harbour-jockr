@@ -25,6 +25,7 @@ Page {
                 anchors.centerIn: parent
                 smooth: !flickable.movingVertically && !flickable.movingHorizontally
                 sourceSize.width: pageViewer.width
+                cache: true
 
                 fillMode: Image.PreserveAspectFit
                 asynchronous: true

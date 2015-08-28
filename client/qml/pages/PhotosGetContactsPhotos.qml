@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import Jockr 1.0
+import harbour.jockr 1.0
 import "models"
 import "delegates"
 

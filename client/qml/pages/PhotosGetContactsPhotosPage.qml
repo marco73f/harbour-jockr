@@ -31,12 +31,11 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "models"
 import "delegates"
-import Jockr 1.0
+import harbour.jockr 1.0
 
 
 Page {
     id: page
-    anchors.fill: parent
     property string title
 
     SilicaGridView {
@@ -48,8 +47,22 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                //enabled: photosGetContactsPhotosModel.page > 1
+                visible: photosGetContactsPhotosModel.page > 1
+                text: qsTr("Previous page")
+                onClicked: { photosGetContactsPhotosModelChangePage(--photosGetContactsPhotosModel.page) }
+            }
+            MenuItem {
                 text: qsTr("Update")
                 onClicked: { photosGetContactsPhotosModelUpdate() }
+            }
+        }
+
+        PushUpMenu {
+            MenuItem {
+                enabled: photosGetContactsPhotosModel.pages > photosGetContactsPhotosModel.page
+                text: qsTr("Next page")
+                onClicked: { photosGetContactsPhotosModelChangePage(++photosGetContactsPhotosModel.page) }
             }
         }
 

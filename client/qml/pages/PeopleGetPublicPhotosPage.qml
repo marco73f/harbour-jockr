@@ -31,11 +31,10 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "models"
 import "delegates"
-import Jockr 1.0
+import harbour.jockr 1.0
 
 Page {
     id: page
-    //anchors.fill: parent
     property string title
     property string nsId
 
@@ -50,8 +49,22 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                //enabled: peopleGetPublicPhotosModel.page > 1
+                visible: peopleGetPublicPhotosModel.page > 1
+                text: qsTr("Previous page")
+                onClicked: { peopleGetPublicPhotosModelChangePage(--peopleGetPublicPhotosModel.page) }
+            }
+            MenuItem {
                 text: qsTr("Update")
                 onClicked: { peopleGetPublicPhotosModelUpdate() }
+            }
+        }
+
+        PushUpMenu {
+            MenuItem {
+                enabled: peopleGetPublicPhotosModel.pages > peopleGetPublicPhotosModel.page
+                text: qsTr("Next page")
+                onClicked: { peopleGetPublicPhotosModelChangePage(++peopleGetPublicPhotosModel.page) }
             }
         }
 
