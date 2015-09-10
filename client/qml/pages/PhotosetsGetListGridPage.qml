@@ -47,23 +47,25 @@ Page {
         model: photosetsListModel
 
         PullDownMenu {
+            busy: photosetsGetListModel.loading
             MenuItem {
                 //enabled: photosetsGetListModel.page > 1
                 visible: photosetsGetListModel.page > 1
                 text: qsTr("Previous page")
-                onClicked: { photosetsGetListModelChangePage(--photosetsGetListModel.page) }
+                onClicked: { photosetsGetListModelChangePage(--photosetsGetListModel.page); photosetsGetListModelTimer.start() }
             }
             MenuItem {
                 text: qsTr("Update")
-                onClicked: { photosetsGetListModelUpdate() }
+                onClicked: { photosetsGetListModelUpdate(); photosetsGetListModelTimer.start() }
             }
         }
 
         PushUpMenu {
+            busy: photosetsGetListModel.loading
             MenuItem {
                 enabled: photosetsGetListModel.pages > photosetsGetListModel.page
                 text: qsTr("Next page")
-                onClicked: { photosetsGetListModelChangePage(++photosetsGetListModel.page) }
+                onClicked: { photosetsGetListModelChangePage(++photosetsGetListModel.page); photosetsGetListModelTimer.start() }
             }
         }
 

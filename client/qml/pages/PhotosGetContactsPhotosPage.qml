@@ -46,23 +46,25 @@ Page {
         header: PageHeader { title: page.title }
 
         PullDownMenu {
+            busy: photosGetContactsPhotosModel.loading
             MenuItem {
                 //enabled: photosGetContactsPhotosModel.page > 1
                 visible: photosGetContactsPhotosModel.page > 1
                 text: qsTr("Previous page")
-                onClicked: { photosGetContactsPhotosModelChangePage(--photosGetContactsPhotosModel.page) }
+                onClicked: { photosGetContactsPhotosModelChangePage(--photosGetContactsPhotosModel.page); photosGetContactsPhotosModelTimer.start() }
             }
             MenuItem {
                 text: qsTr("Update")
-                onClicked: { photosGetContactsPhotosModelUpdate() }
+                onClicked: { photosGetContactsPhotosModelUpdate(); photosGetContactsPhotosModelTimer.start() }
             }
         }
 
         PushUpMenu {
+            busy: photosGetContactsPhotosModel.loading
             MenuItem {
                 enabled: photosGetContactsPhotosModel.pages > photosGetContactsPhotosModel.page
                 text: qsTr("Next page")
-                onClicked: { photosGetContactsPhotosModelChangePage(++photosGetContactsPhotosModel.page) }
+                onClicked: { photosGetContactsPhotosModelChangePage(++photosGetContactsPhotosModel.page); photosGetContactsPhotosModelTimer.start() }
             }
         }
 

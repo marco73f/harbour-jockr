@@ -6,6 +6,7 @@ XmlListModel {
     property string api: "flickr.activity.userPhotos"
     property string params: "timeframe:30d:per_page:" + GValue.per_page + ":item:type,id,owner,ownername,comments,secret,server,farm,views,faves,activity/event:event:type,username"
     property string strStatus
+    property bool loading: false
 
 //    function getQueryString() {
 //        //return "timeframe:30d:per_page:" + GValue.per_page + ":item:type,id,owner,ownername,comments,secret,server,farm,views,faves,activity/event:title::activity::event:type,username"

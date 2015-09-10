@@ -326,6 +326,7 @@ ApplicationWindow
 
         onXmlReady: {
             photoGetRecentModel.xml = xmlResponse
+
         }
 
         onFailed: {
@@ -344,11 +345,21 @@ ApplicationWindow
                     mainMenuModel.setProperty(0, "sourceBuddyIcon", "https://farm" + get(0).farm + ".staticflickr.com/" + get(0).server + "/" + get(0).id + "_" + get(0).secret + "_t.jpg")
                     mainMenuModel.setProperty(0, "stateBuddyIcon", loadedMessage)
                 }
+                //loading = false;
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: peopleGetPhotosModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: peopleGetPhotosModel.loading = !peopleGetPhotosModel.loading
     }
 
     PeopleGetPublicPhotosModel {
@@ -362,11 +373,21 @@ ApplicationWindow
                     mainMenuModel.setProperty(1, "sourceBuddyIcon", "https://farm" + get(0).farm + ".staticflickr.com/" + get(0).server + "/" + get(0).id + "_" + get(0).secret + "_t.jpg")
                     mainMenuModel.setProperty(1, "stateBuddyIcon", loadedMessage)
                 }
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: peopleGetPublicPhotosModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: peopleGetPublicPhotosModel.loading = !peopleGetPublicPhotosModel.loading
     }
 
     PhotosetsGetListModel {
@@ -377,11 +398,21 @@ ApplicationWindow
                 strStatus = count + " Items loaded"
                 mainMenuModel.setProperty(2, "num", count)
                 photosetsListModel.loadData(0)
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: photosetsGetListModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: photosetsGetListModel.loading = !photosetsGetListModel.loading
     }
 
     PhotosetsGetPhotosModel {
@@ -399,11 +430,21 @@ ApplicationWindow
                 if (photosetsListModel.iPhotosets < photosetsGetListModel.count) {
                     photosetsListModel.loadData(photosetsListModel.iPhotosets)
                 }
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: photosetsGetPhotosModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: photosetsGetPhotosModel.loading = !photosetsGetPhotosModel.loading
     }
 
     ListModel {
@@ -452,11 +493,21 @@ ApplicationWindow
                     mainMenuModel.setProperty(3, "stateBuddyIcon", loadedMessage)
                     Flib.loadFavoritesMap(favoritesGetListModel)
                 }
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: favoritesGetListModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: favoritesGetListModel.loading = !favoritesGetListModel.loading
     }
 
     FavoritesAddModel {
@@ -473,11 +524,21 @@ ApplicationWindow
                     Flib.loadFavoritesMap(favoritesAddModel)
                 }
                 */
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: favoritesAddModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: favoritesAddModel.loading = !favoritesAddModel.loading
     }
 
     FavoritesRemoveModel {
@@ -494,11 +555,21 @@ ApplicationWindow
                     Flib.loadFavoritesMap(favoritesRemoveModel)
                 }
                 */
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: favoritesRemoveModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: favoritesRemoveModel.loading = !favoritesRemoveModel.loading
     }
 
     GroupsGetListModel {
@@ -509,11 +580,21 @@ ApplicationWindow
                 strStatus = count + " Items loaded"
                 mainMenuModel.setProperty(4, "num", count)
                 groupsListModel.loadData(0)
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: groupsGetListModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: groupsGetListModel.loading = !groupsGetListModel.loading
     }
 
     GroupGetPhotosModel {
@@ -531,11 +612,21 @@ ApplicationWindow
                 if (groupsListModel.iGroups < groupsGetListModel.count) {
                     groupsListModel.loadData(groupsListModel.iGroups)
                 }
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: groupGetPhotosModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: groupGetPhotosModel.loading = !groupGetPhotosModel.loading
     }
 
     ListModel {
@@ -591,12 +682,22 @@ ApplicationWindow
                     mainMenuModel.setProperty(5, "sourceBuddyIcon", "https://farm" + get(0).farm + ".staticflickr.com/" + get(0).server + "/" + get(0).id + "_" + get(0).secret + "_t.jpg")
                     mainMenuModel.setProperty(5, "stateBuddyIcon", loadedMessage)
                 }
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
             console.log(strStatus)
         }
+    }
+
+    Timer {
+        id: photosGetContactsPhotosModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: photosGetContactsPhotosModel.loading = !photosGetContactsPhotosModel.loading
     }
 
     ContactsGetListModel {
@@ -610,11 +711,21 @@ ApplicationWindow
                     mainMenuModel.setProperty(6, "sourceBuddyIcon", "https://farm" + get(0).iconfarm + ".staticflickr.com/" + get(0).iconserver + "/buddyicons/" + get(0).nsid + ".jpg")
                     mainMenuModel.setProperty(6, "stateBuddyIcon", loadedMessage)
                 }
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+    Timer {
+        id: contactsGetListModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: contactsGetListModel.loading = !contactsGetListModel.loading
     }
 
     PhotoGetRecentModel {
@@ -628,11 +739,22 @@ ApplicationWindow
                     mainMenuModel.setProperty(7, "sourceBuddyIcon", "https://farm" + get(0).farm + ".staticflickr.com/" + get(0).server + "/" + get(0).id + "_" + get(0).secret + "_t.jpg")
                     mainMenuModel.setProperty(7, "stateBuddyIcon", loadedMessage)
                 }
+                //loading = false
             }
             if (status === XmlListModel.Loading) { strStatus = "Loading" }
-            if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+            if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString }
             if (status === XmlListModel.Null) { strStatus = "Loading" }
         }
+    }
+
+
+    Timer {
+        id: photoGetRecentModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: photoGetRecentModel.loading = !photoGetRecentModel.loading
     }
 }
 

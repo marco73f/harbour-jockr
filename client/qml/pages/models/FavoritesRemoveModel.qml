@@ -6,6 +6,7 @@ XmlListModel {
     property string api: "flickr.favorites.remove"
     property string params: "photo_id:"
     property string strStatus
+    property bool loading: false
 
     //query: "/rsp/photos/photo"
 }

@@ -48,23 +48,25 @@ Page {
         model: peopleGetPublicPhotosModel
 
         PullDownMenu {
+            busy: peopleGetPublicPhotosModel.loading
             MenuItem {
                 //enabled: peopleGetPublicPhotosModel.page > 1
                 visible: peopleGetPublicPhotosModel.page > 1
                 text: qsTr("Previous page")
-                onClicked: { peopleGetPublicPhotosModelChangePage(--peopleGetPublicPhotosModel.page) }
+                onClicked: { peopleGetPublicPhotosModelChangePage(--peopleGetPublicPhotosModel.page);peopleGetPublicPhotosModelTimer.start() }
             }
             MenuItem {
                 text: qsTr("Update")
-                onClicked: { peopleGetPublicPhotosModelUpdate() }
+                onClicked: { peopleGetPublicPhotosModelUpdate(); peopleGetPublicPhotosModelTimer.start() }
             }
         }
 
         PushUpMenu {
+            busy: peopleGetPublicPhotosModel.loading
             MenuItem {
                 enabled: peopleGetPublicPhotosModel.pages > peopleGetPublicPhotosModel.page
                 text: qsTr("Next page")
-                onClicked: { peopleGetPublicPhotosModelChangePage(++peopleGetPublicPhotosModel.page) }
+                onClicked: { peopleGetPublicPhotosModelChangePage(++peopleGetPublicPhotosModel.page); peopleGetPublicPhotosModelTimer.start() }
             }
         }
 

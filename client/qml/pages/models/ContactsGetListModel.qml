@@ -5,6 +5,7 @@ import harbour.jockr 1.0
 XmlListModel {
     property string api: "flickr.contacts.getList"
     property string strStatus
+    property bool loading: false
 
     query: "/rsp/contacts/contact"
 

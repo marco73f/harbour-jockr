@@ -6,6 +6,7 @@ XmlListModel {
     property string api: "flickr.people.getGroups"
     property string params
     property string strStatus
+    property bool loading: false
 
     query: "/rsp/groups/group"
 
@@ -14,11 +15,11 @@ XmlListModel {
     XmlRole { name: "iconfarm"; query: "@iconfarm/string()" }
     XmlRole { name: "iconserver"; query: "@iconserver/string()" }
 
-    onStatusChanged: {
-        if (status === XmlListModel.Ready) { strStatus = count + " Items loaded" }
-        if (status === XmlListModel.Loading) { strStatus = "Loading" }
-        if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
-        if (status === XmlListModel.Null) { strStatus = "Loading" }
-    }
+//    onStatusChanged: {
+//        if (status === XmlListModel.Ready) { strStatus = count + " Items loaded" }
+//        if (status === XmlListModel.Loading) { strStatus = "Loading" }
+//        if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+//        if (status === XmlListModel.Null) { strStatus = "Loading" }
+//    }
 }
 

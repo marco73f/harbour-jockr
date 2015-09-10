@@ -1,34 +1,6 @@
-/*
-Copyright (c) <2013>, Jolla Ltd.
-Contact: Vesa-Matti Hartikainen <vesa-matti.hartikainen@jollamobile.com>
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-    Redistributions of source code must retain the above copyright notice, this
-    list of conditions and the following disclaimer. Redistributions in binary
-    form must reproduce the above copyright notice, this list of conditions and
-    the following disclaimer in the documentation and/or other materials
-    provided with the distribution. Neither the name of the Jolla Ltd. nor
-    the names of its contributors may be used to endorse or promote products
-    derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
-
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtQuick.XmlListModel 2.0
 import "models"
 import "delegates"
 import harbour.jockr 1.0
@@ -38,11 +10,51 @@ Page {
     property string group_id
     property string group_Title
     property string group_xml
-    property string title
+    property alias model: grid.model
+
+    property var modelInterface: FactoryModelInterface.getModelInterface(groupPageListModel.api)
+
+    onStatusChanged: {
+        if (status === PageStatus.Active) {
+            groupPageListModel.xml = group_xml
+        }
+    }
+
+    Connections {
+        target: modelInterface
+
+        onXmlReady: {
+            groupPageListModel.xml = xmlResponse
+        }
+
+        onFailed: {
+            groupPageListModel.xml = ""
+        }
+    }
 
     GroupGetPhotosModel {
-        id: groupListModel
-        xml: group_xml
+        id: groupPageListModel
+        property int lpage: 1
+
+        onStatusChanged: {
+            if (status === XmlListModel.Ready) { strStatus = count + qsTr(" Items loaded") }
+            if (status === XmlListModel.Loading) { strStatus = qsTr("Loading") }
+            if (status === XmlListModel.Error) { strStatus = qsTr("Error:") + "\n" + errorString }
+            if (status === XmlListModel.Null) { strStatus = qsTr("Loading") }
+        }
+    }
+
+    function groupPageListModelChangePage(pageNumber) {
+        modelInterface.queryApi("group_id:" + group_id + ":page:" + pageNumber)
+    }
+
+    Timer {
+        id: groupPageListModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: groupPageListModel.loading = !groupPageListModel.loading
     }
 
     SilicaGridView {
@@ -52,29 +64,27 @@ Page {
         cellHeight: cellWidth
         cacheBuffer: grid.height
         anchors.fill: parent
-        model: groupListModel
+        model: groupPageListModel
 
         PullDownMenu {
+            busy: groupPageListModel.loading
             MenuItem {
-//                visible: groupListModel.page > 0
-                enabled: false
+                visible: groupPageListModel.lpage > 1
                 text: qsTr("Previous page")
-//                onClicked: { groupsGetListModelChangePage(--groupListModel.page) }
+                onClicked: { groupPageListModelChangePage(--groupPageListModel.lpage); groupPageListModelTimer.start() }
             }
             MenuItem {
                 text: qsTr("Update")
-                onClicked: {
-                    groupsListModel.fChangePage(group_id, groupListModel.page)
-                }
+                onClicked: { groupPageListModelChangePage(groupPageListModel.lpage); groupPageListModelTimer.start() }
             }
         }
 
         PushUpMenu {
+            busy: groupPageListModel.loading
             MenuItem {
-                //enabled: groupListModel.pages > groupListModel.page
-                enabled: false
+                enabled: groupPageListModel.pages > groupPageListModel.lpage
                 text: qsTr("Next page")
-                //onClicked: { contactsGetPhotosModelChangePage(++groupListModel.page) }
+                onClicked: { groupPageListModelChangePage(++groupPageListModel.lpage); groupPageListModelTimer.start() }
             }
         }
 

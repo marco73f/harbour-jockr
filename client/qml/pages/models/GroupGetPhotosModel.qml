@@ -4,11 +4,12 @@ import harbour.jockr 1.0
 
 XmlListModel {
     property string api: "flickr.groups.pools.getPhotos"
-    property string params
+    property string params: "extras:owner_name,icon_server"
     property string grouptId
     property string strStatus
-    property int page: 0
+    property int page: 1
     property int pages: 10
+    property bool loading: false
 
     query: "/rsp/photos/photo"
 
@@ -19,11 +20,11 @@ XmlListModel {
     XmlRole { name: "farm"; query: "@farm/string()" }
     XmlRole { name: "title"; query: "@title/string()" }
 
-    onStatusChanged: {
-        if (status === XmlListModel.Ready) { strStatus = count + " Items loaded" }
-        if (status === XmlListModel.Loading) { strStatus = "Loading" }
-        if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
-        if (status === XmlListModel.Null) { strStatus = "Loading" }
-    }
+//    onStatusChanged: {
+//        if (status === XmlListModel.Ready) { strStatus = count + " Items loaded" }
+//        if (status === XmlListModel.Loading) { strStatus = "Loading" }
+//        if (status === XmlListModel.Error) { strStatus = "Error:\n" + errorString }
+//        if (status === XmlListModel.Null) { strStatus = "Loading" }
+//    }
 }
 

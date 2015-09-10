@@ -43,6 +43,12 @@ Page {
 
     property var modelInterface: FactoryModelInterface.getModelInterface(contactsGetPhotosModel.api + "&user_id:" + nsId + ":")
 
+    onStatusChanged: {
+        if (status === PageStatus.Active) {
+            contactsGetPhotosModelTimer.start()
+        }
+    }
+
     Connections {
         target: modelInterface
 
@@ -74,6 +80,15 @@ Page {
         modelInterface.queryApi("page:" + pageNumber + ":" + contactsGetPhotosModel.params)
     }
 
+    Timer {
+        id: contactsGetPhotosModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: contactsGetPhotosModel.loading = !contactsGetPhotosModel.loading
+    }
+
     SilicaGridView {
         id: grid
         header: PageHeader { title: page.title }
@@ -84,24 +99,24 @@ Page {
         model: contactsGetPhotosModel
 
         PullDownMenu {
+            busy: contactsGetPhotosModel.loading
             MenuItem {
-                visible: contactsGetPhotosModel.page > 0
+                visible: contactsGetPhotosModel.page > 1
                 text: qsTr("Previous page")
-                onClicked: { contactsGetPhotosModelChangePage(--contactsGetPhotosModel.page) }
+                onClicked: { contactsGetPhotosModelChangePage(--contactsGetPhotosModel.page); contactsGetPhotosModelTimer.start() }
             }
             MenuItem {
                 text: qsTr("Update")
-                onClicked: {
-                    modelInterface.queryApi(contactsGetPhotosModel.params)
-                }
+                onClicked: { modelInterface.queryApi(contactsGetPhotosModel.params); contactsGetPhotosModelTimer.start() }
             }
         }
 
         PushUpMenu {
+            busy: contactsGetPhotosModel.loading
             MenuItem {
                 enabled: contactsGetPhotosModel.pages > contactsGetPhotosModel.page
                 text: qsTr("Next page")
-                onClicked: { contactsGetPhotosModelChangePage(++contactsGetPhotosModel.page) }
+                onClicked: { contactsGetPhotosModelChangePage(++contactsGetPhotosModel.page); contactsGetPhotosModelTimer.start() }
             }
         }
 

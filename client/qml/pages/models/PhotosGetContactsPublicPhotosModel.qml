@@ -6,6 +6,7 @@ XmlListModel {
     property string api: "flickr.photos.getContactsPublicPhotos"
     property string params: "user_id:89036220@N08:count:20:include_self:1:single_photo:true"
     property string strStatus
+    property bool loading: false
 
     Component.onCompleted: {
         loadData()

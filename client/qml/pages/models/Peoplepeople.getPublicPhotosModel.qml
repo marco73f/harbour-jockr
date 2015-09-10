@@ -6,6 +6,7 @@ XmlListModel {
     property string api: "flickr.people.getPublicPhotos"
     property string nsid
     property string strStatus
+    property bool loading: false
 
 //    function getQueryString(nsid) {
 //        return "user_id:" + nsid

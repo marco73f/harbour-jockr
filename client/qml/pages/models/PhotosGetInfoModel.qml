@@ -6,6 +6,7 @@ XmlListModel {
     property string api: "flickr.photos.getInfo"
     property string params
     property string strStatus
+    property bool loading: false
 
     query: "/rsp/photo"
 

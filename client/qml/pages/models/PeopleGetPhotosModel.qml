@@ -9,6 +9,7 @@ XmlListModel {
     property string strStatus
     property int page: 1
     property int pages: 10
+    property bool loading: false
 
     query: "/rsp/photos/photo"
 

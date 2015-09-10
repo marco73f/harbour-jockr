@@ -69,12 +69,10 @@ Page {
         }
 
         PullDownMenu {
+            busy: photoGetRecentModel.loading
             MenuItem {
                 text: qsTr("Search by position")
-                onClicked: {
-                    console.log("update model by near")
-                    grid.updateModelPosition()
-                }
+                onClicked: { grid.updateModelPosition(); photoGetRecentModelTimer.start() }
             }
             MenuItem {
                 enabled: false
@@ -84,19 +82,20 @@ Page {
                 //enabled: photoGetRecentModel.page > 1
                 visible: photoGetRecentModel.page > 1
                 text: qsTr("Previous page")
-                onClicked: { photoGetRecentModelChangePage(--photoGetRecentModel.page) }
+                onClicked: { photoGetRecentModelChangePage(--photoGetRecentModel.page); photoGetRecentModelTimer.start() }
             }
             MenuItem {
                 text: qsTr("Newly published")
-                onClicked: { photoGetRecentModelUpdate() }
+                onClicked: { photoGetRecentModelUpdate(); photoGetRecentModelTimer.start() }
             }
         }
 
         PushUpMenu {
+            busy: photoGetRecentModel.loading
             MenuItem {
                 enabled: photoGetRecentModel.pages > photoGetRecentModel.page
                 text: qsTr("Next page")
-                onClicked: { photoGetRecentModelChangePage(++photoGetRecentModel.page) }
+                onClicked: { photoGetRecentModelChangePage(++photoGetRecentModel.page); photoGetRecentModelTimer.start() }
             }
         }
 

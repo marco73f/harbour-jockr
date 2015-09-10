@@ -14,25 +14,25 @@ Page {
         clip: true
 
         PullDownMenu {
+            busy: favoritesGetListModel.loading
             MenuItem {
                 //enabled: favoritesGetListModel.page > 1
                 visible: favoritesGetListModel.page > 1
                 text: qsTr("Previous page")
-                onClicked: { favoritesGetListModelChangePage(--favoritesGetListModel.page) }
+                onClicked: { favoritesGetListModelChangePage(--favoritesGetListModel.page); favoritesGetListModelTimer.start() }
             }
             MenuItem {
                 text: qsTr("Update")
-                onClicked: {
-                    favoritesGetListModelUpdate()
-                }
+                onClicked: { favoritesGetListModelUpdate(); favoritesGetListModelTimer.start() }
             }
         }
 
         PushUpMenu {
+            busy: favoritesGetListModel.loading
             MenuItem {
                 enabled: favoritesGetListModel.pages > favoritesGetListModel.page
                 text: qsTr("Next page")
-                onClicked: { favoritesGetListModelChangePage(++favoritesGetListModel.page) }
+                onClicked: { favoritesGetListModelChangePage(++favoritesGetListModel.page); favoritesGetListModelTimer.start() }
             }
         }
 
