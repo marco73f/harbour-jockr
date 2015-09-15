@@ -42,6 +42,7 @@ Page {
     }
 
     DefaultListDelegate { id: listDelegate }
+
     ListView {
         id: photoListView
         model: photosGetContactsPhotosModel

@@ -46,28 +46,32 @@ Page {
         anchors.fill: parent
         model: photosetsListModel
 
-        PullDownMenu {
-            busy: photosetsGetListModel.loading
-            MenuItem {
-                //enabled: photosetsGetListModel.page > 1
-                visible: photosetsGetListModel.page > 1
-                text: qsTr("Previous page")
-                onClicked: { photosetsGetListModelChangePage(--photosetsGetListModel.page); photosetsGetListModelTimer.start() }
-            }
-            MenuItem {
-                text: qsTr("Update")
-                onClicked: { photosetsGetListModelUpdate(); photosetsGetListModelTimer.start() }
-            }
-        }
+//        PullDownMenu {
+//            busy: photosetsGetListModel.loading
+//            MenuItem {
+//                //enabled: photosetsGetListModel.page > 1
+//                visible: photosetsGetListModel.page > 1
+//                text: qsTr("Previous page")
+//                onClicked: { photosetsGetListModelChangePage(--photosetsGetListModel.page); photosetsGetListModelTimer.start() }
+//            }
+//            MenuItem {
+//                text: qsTr("Update")
+//                onClicked: { photosetsGetListModelUpdate(); photosetsGetListModelTimer.start() }
+//            }
+//        }
 
-        PushUpMenu {
-            busy: photosetsGetListModel.loading
-            MenuItem {
-                enabled: photosetsGetListModel.pages > photosetsGetListModel.page
-                text: qsTr("Next page")
-                onClicked: { photosetsGetListModelChangePage(++photosetsGetListModel.page); photosetsGetListModelTimer.start() }
-            }
-        }
+//        PushUpMenu {
+//            busy: photosetsGetListModel.loading
+//            MenuItem {
+//                enabled: photosetsGetListModel.pages > photosetsGetListModel.page
+//                text: qsTr("Next page")
+//                onClicked: {
+//                        photosetsGetListModelChangePage(++photosetsGetListModel.page)
+//                        photosetsGetListModel.xml = ""
+//                        photosetsGetListModelTimer.start()
+//                  }
+//            }
+//        }
 
         delegate: JockrPhotoset {
             width: grid.cellWidth

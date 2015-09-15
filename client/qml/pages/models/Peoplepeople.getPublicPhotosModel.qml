@@ -25,7 +25,6 @@ XmlListModel {
     }
 
     function loadData() {
-        console.log("loadData - method:" + api + ":user_id:" + nsid)
         Requestor.queryApi("method:" + api + ":user_id:" + nsid)
     }
 

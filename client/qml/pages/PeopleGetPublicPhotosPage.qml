@@ -64,9 +64,13 @@ Page {
         PushUpMenu {
             busy: peopleGetPublicPhotosModel.loading
             MenuItem {
-                enabled: peopleGetPublicPhotosModel.pages > peopleGetPublicPhotosModel.page
+                enabled: peopleGetPublicPhotosModel.pages > peopleGetPublicPhotosModel.page && peopleGetPublicPhotosModel.count >= GValue.per_page
                 text: qsTr("Next page")
-                onClicked: { peopleGetPublicPhotosModelChangePage(++peopleGetPublicPhotosModel.page); peopleGetPublicPhotosModelTimer.start() }
+                onClicked: {
+                    peopleGetPublicPhotosModelChangePage(++peopleGetPublicPhotosModel.page)
+                    peopleGetPublicPhotosModel.xml = ""
+                    peopleGetPublicPhotosModelTimer.start()
+                }
             }
         }
 

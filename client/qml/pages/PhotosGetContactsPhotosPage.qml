@@ -62,9 +62,13 @@ Page {
         PushUpMenu {
             busy: photosGetContactsPhotosModel.loading
             MenuItem {
-                enabled: photosGetContactsPhotosModel.pages > photosGetContactsPhotosModel.page
+                enabled: photosGetContactsPhotosModel.pages > photosGetContactsPhotosModel.page && photosGetContactsPhotosModel.count >= GValue.per_page
                 text: qsTr("Next page")
-                onClicked: { photosGetContactsPhotosModelChangePage(++photosGetContactsPhotosModel.page); photosGetContactsPhotosModelTimer.start() }
+                onClicked: {
+                    photosGetContactsPhotosModelChangePage(++photosGetContactsPhotosModel.page)
+                    photosGetContactsPhotosModel.xml = ""
+                    photosGetContactsPhotosModelTimer.start()
+                }
             }
         }
 

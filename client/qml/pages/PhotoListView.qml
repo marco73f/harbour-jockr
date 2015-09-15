@@ -93,9 +93,13 @@ Page {
         PushUpMenu {
             busy: photoGetRecentModel.loading
             MenuItem {
-                enabled: photoGetRecentModel.pages > photoGetRecentModel.page
+                enabled: photoGetRecentModel.pages > photoGetRecentModel.page && photoGetRecentModel.count >= GValue.per_page
                 text: qsTr("Next page")
-                onClicked: { photoGetRecentModelChangePage(++photoGetRecentModel.page); photoGetRecentModelTimer.start() }
+                onClicked: {
+                    photoGetRecentModelChangePage(++photoGetRecentModel.page)
+                    photoGetRecentModel.xml = ""
+                    photoGetRecentModelTimer.start()
+                }
             }
         }
 

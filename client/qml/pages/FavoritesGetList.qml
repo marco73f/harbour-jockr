@@ -30,9 +30,13 @@ Page {
         PushUpMenu {
             busy: favoritesGetListModel.loading
             MenuItem {
-                enabled: favoritesGetListModel.pages > favoritesGetListModel.page
+                enabled: favoritesGetListModel.pages > favoritesGetListModel.page && favoritesGetListModel.count >= GValue.per_page
                 text: qsTr("Next page")
-                onClicked: { favoritesGetListModelChangePage(++favoritesGetListModel.page); favoritesGetListModelTimer.start() }
+                onClicked: {
+                    favoritesGetListModelChangePage(++favoritesGetListModel.page)
+                    favoritesGetListModel.xml = ""
+                    favoritesGetListModelTimer.start()
+                }
             }
         }
 

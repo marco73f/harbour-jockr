@@ -438,15 +438,6 @@ ApplicationWindow
         }
     }
 
-    Timer {
-        id: photosetsGetPhotosModelTimer
-        interval: 2000
-        running: false
-        repeat: false
-        triggeredOnStart: true
-        onTriggered: photosetsGetPhotosModel.loading = !photosetsGetPhotosModel.loading
-    }
-
     ListModel {
         id: photosetsListModel
         property int iPhotosets: 0
@@ -454,12 +445,10 @@ ApplicationWindow
 
         function loadData(idx) {
             iPhotosets = idx
-            console.log("photosetsListModel.loadData - photoset_id:" + photosetsGetListModel.get(idx).pId + " idx:" + idx)
             photosetsListInterface.queryApi("photoset_id:" + photosetsGetListModel.get(idx).pId)
         }
 
         function fChangePage(pId, pageNumber) {
-            console.log("photosetsListModel.loadData - photoset_id:" + pId)
             changePage = true
             photosetsListInterface.queryApi("photoset_id:" + pId + "page:" + pageNumber)
         }
@@ -636,12 +625,10 @@ ApplicationWindow
 
         function loadData(idx) {
             iGroups = idx
-            console.log("groupsListModel.loadData - group_id:" + groupsGetListModel.get(idx).nsid + " idx:" + idx)
             groupsListInterface.queryApi("group_id:" + groupsGetListModel.get(idx).nsid)
         }
 
         function fChangePage(gnsid, pageNumber) {
-            console.log("groupsListModel.loadData - group_id:" + gnsid)
             changePage = true
             groupsListInterface.queryApi("group_id:" + gnsid + ":page:" + pageNumber)
         }

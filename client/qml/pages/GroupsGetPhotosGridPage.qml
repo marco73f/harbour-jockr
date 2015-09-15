@@ -11,12 +11,14 @@ Page {
     property string group_Title
     property string group_xml
     property alias model: grid.model
+    property bool justOpened: false
 
     property var modelInterface: FactoryModelInterface.getModelInterface(groupPageListModel.api)
 
     onStatusChanged: {
         if (status === PageStatus.Active) {
-            groupPageListModel.xml = group_xml
+            if (!justOpened) { groupPageListModel.xml = group_xml }
+            justOpened = true
         }
     }
 
@@ -82,9 +84,13 @@ Page {
         PushUpMenu {
             busy: groupPageListModel.loading
             MenuItem {
-                enabled: groupPageListModel.pages > groupPageListModel.lpage
+                enabled: groupPageListModel.pages > groupPageListModel.lpage && groupPageListModel.count >= GValue.per_page
                 text: qsTr("Next page")
-                onClicked: { groupPageListModelChangePage(++groupPageListModel.lpage); groupPageListModelTimer.start() }
+                onClicked: {
+                    groupPageListModelChangePage(++groupPageListModel.lpage)
+                    groupPageListModel.xml = ""
+                    groupPageListModelTimer.start()
+                }
             }
         }
 

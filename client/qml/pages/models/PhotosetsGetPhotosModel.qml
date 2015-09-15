@@ -7,7 +7,7 @@ XmlListModel {
     property string params
     property string photosetId
     property string strStatus
-    property int page: 0
+    property int page: 1
     property int pages: 10
     property bool loading: false
 

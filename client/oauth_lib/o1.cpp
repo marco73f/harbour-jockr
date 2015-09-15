@@ -402,8 +402,6 @@ QByteArray O1::nonce() {
         qsrand(QTime::currentTime().msec());
     }
     QString u = QString::number(QDateTime::currentDateTimeUtc().toTime_t());
-    qDebug() << Q_FUNC_INFO << "u:" << u;
     u.append(QString::number(qrand()));
-    qDebug() << Q_FUNC_INFO << "u:" << u;
     return u.toLatin1().left(10);
 }
