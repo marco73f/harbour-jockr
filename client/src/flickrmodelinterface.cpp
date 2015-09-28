@@ -25,7 +25,6 @@ FlickrModelInterface::~FlickrModelInterface()
 }
 
 void FlickrModelInterface::queryApi(const QString &params) {
-
     QList<O1RequestParameter> reqParams = QList<O1RequestParameter>();
     QString tmpParams(params);
 

@@ -89,9 +89,16 @@ OTHER_FILES += qml/harbour-jockr.qml \
     qml/pages/models/FavoritesAddModel.qml \
     qml/pages/models/FavoritesRemoveModel.qml \
     qml/pages/sharePluginUI.qml \
-    qml/functions.js \
     qml/pages/SignOutPage.qml \
-    qml/pages/PhotoViewer.qml
+    qml/pages/PhotoViewer.qml \
+    qml/pages/models/PhotosetsCreateModel.qml \
+    qml/pages/models/PhotosetsDeleteModel.qml \
+    qml/pages/models/PhotosetsRemovePhotosModel.qml \
+    qml/pages/models/PhotosetsAddPhotoModel.qml \
+    qml/pages/PhotosetsAddPage.qml \
+    qml/pages/PhotosetsRemovePage.qml \
+    qml/favoritesFunctions.js \
+    qml/arrFunction.js
 
 # to disable building translations every time, comment out the
 # following CONFIG line

@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../../functions.js" as Flib
+import "../../favoritesFunctions.js" as Flib
 
 Item {
     id: jockrPhoto

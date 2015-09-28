@@ -33,7 +33,7 @@ import Sailfish.Silica 1.0
 import QtQuick.XmlListModel 2.0
 import harbour.jockr 1.0
 import "pages/models"
-import "functions.js" as Flib
+import "favoritesFunctions.js" as Flib
 
 ApplicationWindow
 {
@@ -86,6 +86,8 @@ ApplicationWindow
 
     ListModel {
         id: mainMenuModel
+        property bool loading: false
+
         ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-cover-camera"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "PeopleGetPhotosGridPage.qml"; num: 0 }
         ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-camera-portrait"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "PeopleGetPublicPhotosPage.qml"; num: 0 }
         ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-camera-landscape"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "PhotosetsGetListGridPage.qml"; num: 0 }
@@ -105,6 +107,16 @@ ApplicationWindow
             setProperty(6, "tab", contactsGetListPage); setProperty(0, "stateBuddyIcon", loadingMessage)
             setProperty(7, "tab", photoListView); setProperty(0, "stateBuddyIcon", loadingMessage)
         }
+    }
+
+
+    Timer {
+        id: mainMenuModelTimer
+        interval: 4000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: mainMenuModel.loading = !mainMenuModel.loading
     }
 
     function peopleGetPhotosModelUpdate() {
@@ -177,6 +189,7 @@ ApplicationWindow
     }
 
     function updateAllModel() {
+        mainMenuModelTimer.start()
         peopleGetPhotosModelUpdate()
         peopleGetPublicPhotosModelUpdate()
         photosetsGetListModelUpdate()
@@ -397,6 +410,8 @@ ApplicationWindow
             if (status === XmlListModel.Ready) {
                 strStatus = count + " Items loaded"
                 mainMenuModel.setProperty(2, "num", count)
+                photosetsListModel.clear()
+                photosetsGetPhotosModel.xml = ""
                 photosetsListModel.loadData(0)
                 //loading = false
             }

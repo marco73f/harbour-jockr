@@ -8,6 +8,15 @@ import "models"
 Page {
     id: page
 
+    Timer {
+        id: peopleGetPhotosModelTimer
+        interval: 2000
+        running: false
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: peopleGetPhotosModel.loading = !peopleGetPhotosModel.loading
+    }
+
     SilicaListView {
         id: listView
         anchors {
@@ -15,6 +24,7 @@ Page {
         }
 
         PullDownMenu {
+            busy: mainMenuModel.loading
             MenuItem {
                 text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
