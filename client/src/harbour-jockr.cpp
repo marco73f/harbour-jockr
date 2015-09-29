@@ -36,11 +36,14 @@
 #include "flickrsignin.h"
 #include "o1flickr.h"
 #include "flickrfactoryinterface.h"
+//#include "jockrsettings.h"
+#include "fileio.h"
 
 static O1Flickr *o1Flickr;
 static FlickrSignIn *flickrSignIn;
 static NetworkConnection *networkConnection;
 static FlickrFactoryInterface *flickrFactoryInterface;
+//static JockrSettings *jockrSettings;
 
 static QJSValue qjsvalue_globalvalue_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
@@ -81,6 +84,14 @@ static QObject *qobject_flickrFactoryInterface_provider(QQmlEngine *engine, QJSE
     return flickrFactoryInterface;
 }
 
+//static QObject *qobject_addSettings(QQmlEngine *engine, QJSEngine *scriptEngine)
+//{
+//    Q_UNUSED(engine)
+//    Q_UNUSED(scriptEngine)
+
+//    return jockrSettings;
+//}
+
 int main(int argc, char *argv[])
 {
     networkConnection = new NetworkConnection();
@@ -88,6 +99,7 @@ int main(int argc, char *argv[])
     //o1Flickr->setNetworkAccessManager(networkConnection->getNetworkAccessManager());
     flickrSignIn = new FlickrSignIn(o1Flickr);
     flickrFactoryInterface = new FlickrFactoryInterface(o1Flickr, networkConnection->getNetworkAccessManager());
+    //jockrSettings = new JockrSettings();
 
     /*
     qmlRegisterSingletonType("harbour.jockr.settings", 1, 0, "GValue", qjsvalue_globalvalue_provider);
@@ -99,6 +111,8 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonType<NetworkConnection>("harbour.jockr", 1, 0, "ConnMan", qobject_networkConnection_provider);
     qmlRegisterSingletonType<FlickrSignIn>("harbour.jockr", 1, 0, "OAuth", qobject_flickrSignIn_provider);
     qmlRegisterSingletonType<FlickrFactoryInterface>("harbour.jockr", 1, 0, "FactoryModelInterface", qobject_flickrFactoryInterface_provider);
+    //qmlRegisterSingletonType<JockrSettings>("harbour.jockr", 1, 0, "Settings", qobject_addSettings);
+    qmlRegisterType<FileIO, 1>("harbour.jockr", 1, 0, "FileIO");
 
 
     QGuiApplication* app = SailfishApp::application(argc, argv);

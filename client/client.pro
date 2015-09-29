@@ -10,13 +10,17 @@ HEADERS += \
     src/networkconnection.h \
     src/flickrsignin.h \
     src/flickrmodelinterface.h \
-    src/flickrfactoryinterface.h
+    src/flickrfactoryinterface.h \
+    src/jockrsettings.h \
+    src/fileio.h
 
 SOURCES += src/harbour-jockr.cpp \
     src/networkconnection.cpp \
     src/flickrsignin.cpp \
     src/flickrmodelinterface.cpp \
-    src/flickrfactoryinterface.cpp
+    src/flickrfactoryinterface.cpp \
+    src/jockrsettings.cpp \
+    src/fileio.cpp
 
 OTHER_FILES += qml/harbour-jockr.qml \
     qml/cover/CoverPage.qml \

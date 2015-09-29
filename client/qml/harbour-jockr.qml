@@ -40,6 +40,7 @@ ApplicationWindow
     id: window
     Component.onCompleted: {
             OAuth.doOAuth()
+            //Settings.load()
     }
 
     property bool autorizationPageIsOpen: false
@@ -54,6 +55,12 @@ ApplicationWindow
     property string photoListView: qsTr("Explores flickr")
     property string loadingMessage: qsTr("Loading")
     property string loadedMessage: qsTr("Loaded")
+
+    FileIO {
+        id: myFile
+        source: "/home/nemo/.config/marco73f/harbour-jockr-album-model.xml"
+        onError: console.log(msg)
+    }
 
     Connections {
         target: OAuth
@@ -89,8 +96,8 @@ ApplicationWindow
         property bool loading: false
 
         ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-cover-camera"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "PeopleGetPhotosGridPage.qml"; num: 0 }
-        ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-camera-portrait"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "PeopleGetPublicPhotosPage.qml"; num: 0 }
-        ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-camera-landscape"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "PhotosetsGetListGridPage.qml"; num: 0 }
+        ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-cover-next"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "PeopleGetPublicPhotosPage.qml"; num: 0 }
+        ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-cover-new"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "PhotosetsGetListGridPage.qml"; num: 0 }
         ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-cover-favorite"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "FavoritesGetList.qml"; num: 0 }
         ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-cover-shuffle"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "GroupsGetListGridPage.qml"; num: 0 }
         ListElement { tab: ""; sourcePlasceHolderIcon: "image://theme/icon-cover-timer"; sourceBuddyIcon: ""; stateBuddyIcon: ""; page: "PhotosGetContactsPhotosPage.qml"; num: 0 }
@@ -253,6 +260,10 @@ ApplicationWindow
 
         onXmlReady: {
             photosetsGetListModel.xml = xmlResponse
+            console.log(myFile.read())
+            myFile.write(xmlResponse)
+            //console.log(Settings.xmlAlbumList())
+            //Settings.setXmlAlbumList(xmlResponse)
         }
 
         onFailed: {

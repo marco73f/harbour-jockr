@@ -140,8 +140,7 @@ Item {
         IconButton {
             id: infoIcon
             visible: !pinchPhoto
-            //icon.source: "image://theme/icon-m-about"
-            icon.source: "image://theme/icon-lock-information"
+            icon.source: "image://theme/icon-m-about"
             onClicked: listView.getInfo(pId, pSecret)
         }
 
@@ -149,7 +148,8 @@ Item {
             id: zoomIcon
             visible: !pinchPhoto
             //icon.source: "image://theme/icon-camera-zoom-tele" icon-camera-zoom-in
-            icon.source: "image://theme/icon-camera-exposure-compensation"
+            //icon.source: "image://theme/icon-camera-exposure-compensation"
+            icon.source: "image://theme/icon-m-scale"
             onClicked: listView.zoomPage(photo.source)
         }
     }

@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtQuick.XmlListModel 2.0
 import Sailfish.TransferEngine 1.0
 
 ShareDialog {
@@ -97,6 +98,61 @@ ShareDialog {
                 text: ""
                 label: qsTr("Tags")
             }
+
+            /*
+            XmlListModel {
+                id: xmlListModel
+                property string strStatus
+                source: "file:///home/nemo/.config/marco73f/harbour-jockr-album-model.xml"
+                query: "/rsp/photosets/photoset"
+                XmlRole { name: "pId"; query: "@id/string()" }
+                XmlRole { name: "primary"; query: "@primary/string()" }
+                XmlRole { name: "secret"; query: "@secret/string()" }
+                XmlRole { name: "server"; query: "@server/string()" }
+                XmlRole { name: "farm"; query: "@farm/string()" }
+                XmlRole { name: "photos"; query: "@photos/string()" }
+                XmlRole { name: "videos"; query: "@videos/string()" }
+                XmlRole { name: "needs_interstitial"; query: "@needs_interstitial/string()" }
+                XmlRole { name: "visibility_can_see_set"; query: "@visibility_can_see_set/string()" }
+                XmlRole { name: "count_comments"; query: "@count_comments/string()" }
+                XmlRole { name: "can_comment"; query: "@can_comment/string()" }
+                XmlRole { name: "count_views"; query: "@count_views/string()" }
+                XmlRole { name: "date_create"; query: "@date_create/string()" }
+                XmlRole { name: "date_update"; query: "@date_update/string()" }
+                XmlRole { name: "title"; query: "title/string()" }
+                XmlRole { name: "description"; query: "description/string()" }
+
+                onStatusChanged: {
+                    if (status === XmlListModel.Ready) { strStatus = count + " Items loaded"; console.log(strStatus) }
+                    if (status === XmlListModel.Loading) { strStatus = "Loading"; console.log(strStatus)  }
+                    if (status === XmlListModel.Error) { loading = false; strStatus = "Error:\n" + errorString; console.log(strStatus)  }
+                    if (status === XmlListModel.Null) { strStatus = "Loading"; console.log(strStatus)  }
+                }
+            }
+
+            ComboBox {
+                id: albumList
+                width: parent.width
+                label: qsTr("Add to album: ")
+                menu: ContextMenu {
+                    MenuItem { text: "no" }
+                    Repeater {
+                        model: xmlListModel
+                        MenuItem { text: model.title }
+                    }
+                }
+                onCurrentIndexChanged: {
+                    console.log("https://farm" + xmlListModel.get(albumList.currentIndex).farm + ".staticflickr.com/" + xmlListModel.get(albumList.currentIndex).server + "/" + xmlListModel.get(albumList.currentIndex).pId + "_" + xmlListModel.get(albumList.currentIndex).secret + "_m.jpg")
+                }
+            }
+
+//            Image {
+//                id: photo
+//                visible: albumList.currentIndex > 0
+//                anchors { horizontalCenter: parent.horizontalCenter }
+//                source: "https://farm" + xmlListModel.get(albumList.currentIndex).farm + ".staticflickr.com/" + xmlListModel.get(albumList.currentIndex).server + "/" + xmlListModel.get(albumList.currentIndex).pId + "_" + xmlListModel.get(albumList.currentIndex).secret + "_m.jpg"
+//            }
+            */
 
             ComboBox {
                 id: mediaType
