@@ -47,6 +47,15 @@ Dialog {
     property bool createAlbum
     property variant photos_id_selection: []
 
+    Component.onCompleted: {
+        if (createAlbum) {
+            grid.height = page.height - (dialogHeader.height + phTitle.height + phDesc.height + (headerColumn.spacing * 2))
+        }
+        else {
+            grid.height = page.height - dialogHeader.height
+        }
+    }
+
     Column {
         id: headerColumn
         width: parent.width
@@ -61,7 +70,7 @@ Dialog {
             id: phTitle
             visible: createAlbum
             x: Theme.paddingLarge
-            focus: true
+            focus: createAlbum
             width: parent.width
             //inputMethodHints: Qt.ImhDialableCharactersOnly
             placeholderText: qsTr("Album name", "Name of the Album")
@@ -72,7 +81,6 @@ Dialog {
             id: phDesc
             visible: createAlbum
             x: Theme.paddingLarge
-            focus: true
             width: parent.width
             //inputMethodHints: Qt.ImhDialableCharactersOnly
             placeholderText: qsTr("Description", "Description of the Album")
@@ -82,14 +90,14 @@ Dialog {
         SilicaGridView {
             id: grid
             clip: true
+            cellWidth: width / 3
+            cellHeight: cellWidth
+            cacheBuffer: grid.height
+
             anchors {
                 left: parent.left
                 right: parent.right
             }
-            height: page.height - (dialogHeader.height + phTitle.height + phDesc.height + (headerColumn.spacing * 2))
-            cellWidth: width / 3
-            cellHeight: cellWidth
-            cacheBuffer: grid.height
 
             model: peopleGetPhotosModel
 
