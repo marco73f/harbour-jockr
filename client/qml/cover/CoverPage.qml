@@ -32,17 +32,38 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
-    Label {
-        id: label
-        font.pixelSize: Theme.fontSizeLarge
-        anchors {
-            top: parent.top
-            topMargin: Theme.paddingLarge
-            horizontalCenter: parent.horizontalCenter
+
+//        GridView {
+//            id: grid
+//            cellWidth: width / 2
+//            cellHeight: cellWidth
+//            anchors.fill: parent
+//            model: mainMenuModel
+
+//            delegate: Image {
+//                width: grid.cellWidth
+//                height: grid.cellHeight
+//                source: "https://farm" + farm + ".staticflickr.com/" + server + "/" + id + "_" + secret + "_s.jpg"
+//            }
+//        }
+
+        Label {
+            id: label
+            font.pixelSize: Theme.fontSizeLarge
+            anchors {
+                top: parent.top
+                topMargin: Theme.paddingLarge
+                horizontalCenter: parent.horizontalCenter
+            }
+            text: "Jockr"
         }
-        text: "Jockr"
-    }
-/*
+
+        Image {
+            source: "/usr/share/icons/hicolor/86x86/apps/harbour-jockr.png"
+            anchors.centerIn: parent
+        }
+
+    /*
     CoverActionList {
         id: coverAction
 

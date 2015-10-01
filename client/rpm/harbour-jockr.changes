@@ -8,7 +8,7 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Mon Sep 28 13:03:35 CEST 2015 marco73f <marco73f@gmail.com> 0.0.5-1
+* Mon Sep 28 13:03:35 CEST 2015 marco73f <marco73f@gmail.com> 0.0.5-2
 - added these features:
 added search of a newly updates
 removed incorrected dependencies for harbour
@@ -21,3 +21,4 @@ updated translation
 new features in album's section: delete an Album, create an new Album, add/remove photos from a album
 adjustments needed by sailfishos 1.1.9.28
 prepared new features of the uploading plugin
+added icon image on the application cover

@@ -35,7 +35,7 @@ Page {
                 }
 
                 Label {
-                    text: "Jockr - 0.0.5-1"
+                    text: "Jockr - 0.0.5-2"
                     color: Theme.highlightColor
                     font.pixelSize: Theme.fontSizeMedium
                     width: parent.width

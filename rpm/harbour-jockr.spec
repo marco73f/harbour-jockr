@@ -12,7 +12,7 @@ Name:       harbour-jockr
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    jockr
 Version:    0.0.5
-Release:    1
+Release:    2
 Group:      Qt/Qt
 License:    LICENSE
 #URL:        http://example.org/
