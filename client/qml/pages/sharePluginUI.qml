@@ -31,7 +31,8 @@ ShareDialog {
             (mediaPrivacy.currentIndex == 2 || mediaPrivacy.currentIndex == 3 ? 1 : 0) + "," + //"is_family"
             (mediaPrivacy.currentIndex == 4 ? 1 : 0) + "," + //"is_public"
             (mediaSafety.currentIndex + 1) + "," + //"safety_level"
-            (mediaPublicReserch.text == "yes" ?  1 : 2)} //"hidden"
+            (mediaPublicReserch.text == "yes" ?  1 : 2) + "," + //"hidden"
+            xmlListModel.get(albumList.currentIndex - 1).pId}
         console.debug("shareItem.userData = " + shareItem.userData);
         shareItem.start()
     }
@@ -99,7 +100,6 @@ ShareDialog {
                 label: qsTr("Tags")
             }
 
-            /*
             XmlListModel {
                 id: xmlListModel
                 property string strStatus
@@ -141,9 +141,9 @@ ShareDialog {
                         MenuItem { text: model.title }
                     }
                 }
-                onCurrentIndexChanged: {
-                    console.log("https://farm" + xmlListModel.get(albumList.currentIndex).farm + ".staticflickr.com/" + xmlListModel.get(albumList.currentIndex).server + "/" + xmlListModel.get(albumList.currentIndex).pId + "_" + xmlListModel.get(albumList.currentIndex).secret + "_m.jpg")
-                }
+//                onCurrentIndexChanged: {
+//                    console.log("https://farm" + xmlListModel.get(albumList.currentIndex).farm + ".staticflickr.com/" + xmlListModel.get(albumList.currentIndex).server + "/" + xmlListModel.get(albumList.currentIndex).pId + "_" + xmlListModel.get(albumList.currentIndex).secret + "_m.jpg")
+//                }
             }
 
 //            Image {
@@ -152,7 +152,6 @@ ShareDialog {
 //                anchors { horizontalCenter: parent.horizontalCenter }
 //                source: "https://farm" + xmlListModel.get(albumList.currentIndex).farm + ".staticflickr.com/" + xmlListModel.get(albumList.currentIndex).server + "/" + xmlListModel.get(albumList.currentIndex).pId + "_" + xmlListModel.get(albumList.currentIndex).secret + "_m.jpg"
 //            }
-            */
 
             ComboBox {
                 id: mediaType

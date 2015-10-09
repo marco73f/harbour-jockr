@@ -41,19 +41,25 @@ void JockrMediaTransfer::start()
         QString url = mediaItem()->value(MediaItem::Url).toString().replace("file://", "");
         QString title = mediaItem()->value(MediaItem::Title).toString();
         QStringList descriptions = mediaItem()->value(MediaItem::Description).toString().split(",");
-        descriptions.insert(0, title);
-        QStringList::const_iterator constIterator;
-        for (constIterator = descriptions.constBegin(); constIterator != descriptions.constEnd(); ++constIterator) {
-            qDebug() << " - " << (*constIterator).toLatin1().constData();
+        QString photosetId = "no";
+
+        if (!descriptions.isEmpty()) {
+            photosetId = descriptions.takeLast();
         }
 
-        QString mymeType = mediaItem()->value(MediaItem::MimeType).toString();
-        qDebug() << "mymeType: " << mymeType;
+        descriptions.insert(0, title);
+        QStringList::const_iterator constIterator;
+//        for (constIterator = descriptions.constBegin(); constIterator != descriptions.constEnd(); ++constIterator) {
+//            qDebug() << " - " << (*constIterator).toLatin1().constData();
+//        }
 
-        QString params = mediaItem()->value(MediaItem::UserData).toString();
-        qDebug() << "userData: " << params;
+//        QString mymeType = mediaItem()->value(MediaItem::MimeType).toString();
+//        qDebug() << "mymeType: " << mymeType;
 
-        flickrUploadInterface->send(url, descriptions);
+//        QString params = mediaItem()->value(MediaItem::UserData).toString();
+//        qDebug() << "userData: " << params;
+
+        flickrUploadInterface->send(url, descriptions, photosetId);
     }
     else {
         qDebug() << "Error: flickrUploadInterface->connStatus() == " << flickrUploadInterface->connStatus();

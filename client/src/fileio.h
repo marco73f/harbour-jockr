@@ -2,6 +2,11 @@
 #define FILEIO_H
 
 #include <QObject>
+#include <QDir>
+#include <QDebug>
+
+const char STORE_SETTING[] = ".config";
+const char STORE_ORGANIZATION[] = "marco73f";
 
 class FileIO : public QObject
 {
@@ -20,7 +25,9 @@ public:
     QString source() { return mSource; }
 
 public slots:
-    void setSource(const QString& source) { mSource = source; }
+    void setSource(const QString& source) {
+        mSource = QDir::homePath() + "/" + STORE_SETTING + "/" + STORE_ORGANIZATION + "/" + source;
+    }
 
 signals:
     void sourceChanged(const QString& source);

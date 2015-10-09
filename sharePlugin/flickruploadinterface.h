@@ -9,6 +9,7 @@
 #include "o1flickr.h"
 #include "flickrsignin.h"
 #include "o1requestor.h"
+#include "flickrmodelinterface.h"
 
 class FlickrUploadInterface : public QObject
 {
@@ -38,11 +39,12 @@ signals:
     void uploadMediaFinished(bool ok);
 
 public slots:
-    void send(const QString &mediaUrl, const QStringList &params);
+    void send(const QString &mediaUrl, const QStringList &params, const QString &photosetId);
 
 private slots:
     void finished();
     void changeStatus();
+    void photostreamAdded(QString xml);
 
 private:
     QNetworkReply *reply_;
@@ -52,6 +54,8 @@ private:
     NetworkConnection *networkConnection;
     QNetworkAccessManager *netManager;
     FlickConnectionStatus mConnStatus;
+    FlickrModelInterface *flickrModelInterface;
+    QString photosetId_;
 };
 
 #endif // FLICKRUPLOADINTERFACE_H

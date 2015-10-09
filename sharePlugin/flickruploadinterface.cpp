@@ -104,9 +104,10 @@ void FlickrUploadInterface::changeStatus() {
     }
 }
 
-void FlickrUploadInterface::send(const QString &mediaUrl, const QStringList &params) {
+void FlickrUploadInterface::send(const QString &mediaUrl, const QStringList &params, const QString &photosetId) {
     qDebug() << "send()";
     QUrl url = QUrl(URL);
+    photosetId_ = photosetId;
     reply_ = requestor_->upload(url, params, mediaUrl);
     qDebug() << "send() started";
     emit uploadMediaStarted();
@@ -121,7 +122,27 @@ void FlickrUploadInterface::finished() {
         emit uploadMediaFinished(false);
     } else {
         QByteArray xml = reply_->readAll();
+
         emit xmlReady(QString::fromUtf8(xml));
-        emit uploadMediaFinished(true);
+
+        if (photosetId_ != "no") {
+            QByteArray sPhotoId = "<photoid>";
+            QByteArray fPhotoId = "</photoid>";
+            int sIndexPhotoId = xml.indexOf(sPhotoId) + sPhotoId.length();
+            int fIndexPhotoId = xml.indexOf(fPhotoId) - sIndexPhotoId;
+            QByteArray photoId = xml.mid(sIndexPhotoId, fIndexPhotoId);;
+            flickrModelInterface = new FlickrModelInterface(o1Flickr, netManager, "flickr.photosets.addPhoto", this);
+            //connect(flickrModelInterface, SIGNAL(failed()), this, SIGNAL(failed()));
+            connect(flickrModelInterface, SIGNAL(xmlReady(QString)), this, SLOT(photostreamAdded(QString)));
+            flickrModelInterface->queryApi("photoset_id:" + photosetId_ + ":photo_id:" + photoId);
+        }
+        else {
+            //emit xmlReady(QString::fromUtf8(xml));
+            emit uploadMediaFinished(true);
+        }
     }
+}
+
+void FlickrUploadInterface::photostreamAdded(QString xml) {
+    emit uploadMediaFinished(true);
 }

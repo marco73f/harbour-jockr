@@ -58,8 +58,8 @@ ApplicationWindow
 
     FileIO {
         id: myFile
-        source: "/home/nemo/.config/marco73f/harbour-jockr-album-model.xml"
-        onError: console.log(msg)
+        source: "harbour-jockr-album-model.xml"
+        //onError: console.log("FileIO ERROR: " + msg)
     }
 
     Connections {
@@ -260,7 +260,7 @@ ApplicationWindow
 
         onXmlReady: {
             photosetsGetListModel.xml = xmlResponse
-            console.log(myFile.read())
+            //console.log("xmlResponse read : " + myFile.read())
             myFile.write(xmlResponse)
             //console.log(Settings.xmlAlbumList())
             //Settings.setXmlAlbumList(xmlResponse)
