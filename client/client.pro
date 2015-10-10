@@ -92,7 +92,8 @@ OTHER_FILES += qml/harbour-jockr.qml \
     qml/pages/models/GroupGetPhotosModel.qml \
     qml/pages/models/FavoritesAddModel.qml \
     qml/pages/models/FavoritesRemoveModel.qml \
-    qml/pages/sharePluginUI.qml \
+#Disabled for publishing on harbour
+    #qml/pages/sharePluginUI.qml \
     qml/pages/SignOutPage.qml \
     qml/pages/PhotoViewer.qml \
     qml/pages/models/PhotosetsCreateModel.qml \

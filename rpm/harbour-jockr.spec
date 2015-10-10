@@ -3,7 +3,7 @@ Name:       harbour-jockr
 # >> macros
 # list here all the libraries your RPM installs
 # Disabled for publishing on harbour
-%define __requires_exclude ^libnemotransferengine.*$
+# %define __requires_exclude ^libnemotransferengine.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -67,6 +67,6 @@ desktop-file-install --delete-original       \
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/86x86/apps/%{name}.png
 # Disabled for publishing on harbour
-/usr/lib/nemo-transferengine/plugins/*.so
+# /usr/lib/nemo-transferengine/plugins/*.so
 # >> files
 # << files
